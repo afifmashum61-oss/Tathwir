@@ -26,7 +26,7 @@ export default function Navbar({ activeTab, setActiveTab, onNewDocument }) {
     <header className="no-print sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-teal-100 shadow-sm">
       {/* Top Banner Bar */}
       <div className="bg-gradient-to-r from-teal-800 via-teal-700 to-emerald-600 text-white text-xs py-1 px-4 text-center font-medium flex justify-between items-center">
-        <span>✨ <a href="https://tathwir.idarah.my.id" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:text-amber-200">tathwir.idarah.my.id</a> - Generator Modul Ajar Deep Learning, PROTA & PROSEM AI</span>
+        <span>✨ Generator Modul Ajar Deep Learning, PROTA & PROSEM AI - MTs Darussalam Ngesong</span>
         <span className="bg-emerald-500/30 px-2 py-0.5 rounded text-[11px] font-semibold">V2.6 KBC Standard</span>
       </div>
 
@@ -46,7 +46,7 @@ export default function Navbar({ activeTab, setActiveTab, onNewDocument }) {
                 <span className="bg-rose-100 text-rose-700 text-[10px] font-extrabold px-1.5 py-0.5 rounded uppercase">KBC & DEEP</span>
               </div>
               <p className="text-[11px] text-slate-500 font-medium">
-                Official Web: <a href="https://tathwir.idarah.my.id" target="_blank" rel="noopener noreferrer" className="text-teal-600 font-bold hover:underline">tathwir.idarah.my.id</a>
+                MTs Darussalam Ngesong
               </p>
             </div>
           </div>
