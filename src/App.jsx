@@ -19,19 +19,27 @@ export default function App() {
   const [documents, setDocuments] = useState([]);
   const [currentDoc, setCurrentDoc] = useState(null);
 
-  // Load documents from LocalStorage on mount
+  // Load documents from LocalStorage on mount & ensure master preset templates are always preserved
   useEffect(() => {
     try {
       const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
-      if (stored) {
-        setDocuments(JSON.parse(stored));
-      } else {
-        setDocuments(PRESET_TEMPLATES);
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(PRESET_TEMPLATES));
-      }
+      let parsed = stored ? JSON.parse(stored) : [];
+      
+      // Ensure master preset templates are always present and protected
+      PRESET_TEMPLATES.forEach(preset => {
+        const exists = parsed.some(d => d.id === preset.id);
+        if (!exists) {
+          parsed.unshift({ ...preset, isProtected: true });
+        } else {
+          parsed = parsed.map(d => d.id === preset.id ? { ...d, isProtected: true } : d);
+        }
+      });
+
+      setDocuments(parsed);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(parsed));
     } catch (e) {
       console.error('Error loading documents:', e);
-      setDocuments(PRESET_TEMPLATES);
+      setDocuments(PRESET_TEMPLATES.map(p => ({ ...p, isProtected: true })));
     }
   }, []);
 
@@ -50,12 +58,22 @@ export default function App() {
       day: 'numeric', month: 'short', year: 'numeric'
     });
 
-    const docWithTimestamp = {
+    let docWithTimestamp = {
       ...docToSave,
       updatedAt: nowStr
     };
 
-    const existingIndex = documents.findIndex(d => d.id === docToSave.id);
+    // If editing a master protected template, save as a new user copy
+    if (docToSave.isProtected) {
+      docWithTimestamp = {
+        ...docWithTimestamp,
+        id: 'modul-' + Date.now(),
+        isProtected: false,
+        title: `${docToSave.title} (Salinan Edit)`
+      };
+    }
+
+    const existingIndex = documents.findIndex(d => d.id === docWithTimestamp.id);
     let updatedDocs;
 
     if (existingIndex >= 0) {
@@ -70,6 +88,12 @@ export default function App() {
   };
 
   const handleDeleteDocument = (id) => {
+    const targetDoc = documents.find(d => d.id === id);
+    if (targetDoc && (targetDoc.isProtected || targetDoc.isPreset)) {
+      alert('⚠️ Bahan Ajar Utama (Master Template) ini dilindungi dan tidak dapat dihapus.\n\nAnda dapat menggunakan fitur "Duplikasi" atau membuat modul baru jika ingin menyesuaikannya.');
+      return;
+    }
+
     if (window.confirm('Apakah Anda yakin ingin menghapus dokumen perangkat ini?')) {
       const updated = documents.filter(d => d.id !== id);
       saveDocumentsToStorage(updated);

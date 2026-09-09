@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Sparkles, FilePlus, FolderKanban, CheckCircle2, Clock, 
-  ArrowRight, BookOpen, Layers, Award, Printer, Edit3, Trash2, Copy, Search, Calendar, CalendarRange
+  ArrowRight, BookOpen, Layers, Award, Printer, Edit3, Trash2, Copy, Search, Calendar, CalendarRange, Lock
 } from 'lucide-react';
 import { PRESET_TEMPLATES } from '../data/presetTemplates';
 
@@ -234,9 +234,16 @@ export default function Dashboard({
               >
                 <div>
                   <div className="flex justify-between items-start mb-3">
-                    <span className="bg-teal-100 text-teal-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">
-                      {doc.matpel || 'Mata Pelajaran'}
-                    </span>
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="bg-teal-100 text-teal-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">
+                        {doc.matpel || 'Mata Pelajaran'}
+                      </span>
+                      {(doc.isProtected || doc.isPreset) && (
+                        <span className="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-2 py-0.5 rounded-md flex items-center gap-1">
+                          <Lock className="w-3 h-3 text-amber-600" /> Master
+                        </span>
+                      )}
+                    </div>
                     <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1">
                       <Clock className="w-3 h-3" />
                       {doc.updatedAt || 'Terbaru'}
@@ -262,13 +269,23 @@ export default function Dashboard({
                   </button>
 
                   <div className="flex items-center gap-1 text-slate-400">
-                    <button
-                      onClick={() => onDeleteDoc(doc.id)}
-                      className="p-1.5 hover:text-rose-600 hover:bg-rose-50 rounded-md transition-colors"
-                      title="Hapus Dokumen"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                    {(doc.isProtected || doc.isPreset) ? (
+                      <button
+                        onClick={() => onDeleteDoc(doc.id)}
+                        className="p-1.5 text-amber-600 hover:bg-amber-50 rounded-md transition-colors"
+                        title="Bahan Ajar Utama (Dilindungi & Tidak Dapat Dihapus)"
+                      >
+                        <Lock className="w-4 h-4" />
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => onDeleteDoc(doc.id)}
+                        className="p-1.5 hover:text-rose-600 hover:bg-rose-50 rounded-md transition-colors"
+                        title="Hapus Dokumen"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

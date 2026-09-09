@@ -93,6 +93,7 @@ export const SEMESTER_OPTIONS = [
 export const PRESET_TEMPLATES = [
   {
     id: 'tpl-deep-learning-bahasa-arab',
+    isProtected: true,
     title: 'Modul Ajar Deep Learning (KBC) - Bahasa Arab Bab 1: Al-Ta\'aruf (Perkenalan)',
     matpel: 'BAHASA ARAB',
     bab: 'BAB 1 : التَّعَارُف (PERKENALAN)',
