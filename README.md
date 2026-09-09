@@ -1,5 +1,7 @@
 # Tathwir - PerangkatAjar Pro 📚✨
 
+**Official Web Domain**: [https://idarah.my.id](https://idarah.my.id)
+
 **Tathwir (تطوير)** adalah Platform Generator Perangkat Pembelajaran AI interaktif untuk Guru Indonesia & Madrasah Kemenag. Aplikasi ini dirancang khusus untuk mempermudah penyusunan **Modul Ajar Deep Learning (Mindful, Meaningful, Joyful Learning)**, **Kurikulum Berbasis Cinta (KBC Kemenag)**, **Program Tahunan (PROTA)**, **Program Semester (PROSEM)**, serta **Rubrik Asesmen 3 Kolom**.
 
 ---
