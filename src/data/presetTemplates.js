@@ -105,7 +105,7 @@ export const PRESET_TEMPLATES = [
     tahunAjaran: '2024/2025',
     namaGuru: 'Ahmad Muzakki, S.Pd.I.',
     nipGuru: '19910512 201903 1 004',
-    namaSekolah: 'MTs Negeri 1 Darussalam',
+    namaSekolah: 'MTs Darussalam Ngesong',
     namaKepala: 'Drs. H. Ahmad Dahlan, M.Ag.',
     nipKepala: '19720510 199803 1 002',
 

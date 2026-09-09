@@ -15,7 +15,7 @@ const DEFAULT_PROTA_ITEMS = [
 
 export default function ProtaManager({ onBack, onSaveToBank, exportProtaWord }) {
   const [identitas, setIdentitas] = useState({
-    namaSekolah: 'MTs NEGERI 1 KOTA MALANG',
+    namaSekolah: 'MTs Darussalam Ngesong',
     matpel: 'BAHASA ARAB',
     kelas: 'VII',
     fase: 'D',

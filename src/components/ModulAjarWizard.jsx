@@ -316,7 +316,7 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
                   value={formData.namaSekolah}
                   onChange={(e) => handleChange('namaSekolah', e.target.value)}
                   className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-teal-500 outline-none"
-                  placeholder="misal: MTs Negeri 1 Darussalam"
+                  placeholder="misal: MTs Darussalam Ngesong"
                 />
               </div>
 

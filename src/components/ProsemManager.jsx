@@ -14,7 +14,7 @@ const DEFAULT_PROSEM_ITEMS = [
 
 export default function ProsemManager({ onBack, onSaveToBank, exportProsemWord }) {
   const [identitas, setIdentitas] = useState({
-    namaSekolah: 'MTs NEGERI 1 KOTA MALANG',
+    namaSekolah: 'MTs Darussalam Ngesong',
     matpel: 'BAHASA ARAB',
     kelas: 'VII',
     fase: 'D',
