@@ -244,7 +244,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-3">
           <div className="flex items-center gap-2 font-bold text-slate-700">
             <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-            PerangkatAjar Pro © 2026 • <a href="https://idarah.my.id" target="_blank" rel="noopener noreferrer" className="text-teal-600 font-bold hover:underline">idarah.my.id</a>
+            PerangkatAjar Pro © 2026 • <a href="https://tathwir.idarah.my.id" target="_blank" rel="noopener noreferrer" className="text-teal-600 font-bold hover:underline">tathwir.idarah.my.id</a>
           </div>
           <div>
             Dikembangkan untuk Efisiensi Guru Indonesia & Satuan Pendidikan Kemenag
