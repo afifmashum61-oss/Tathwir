@@ -14,6 +14,46 @@ import { exportProtaToWord, exportProsemToWord } from './utils/exportUtils';
 
 const LOCAL_STORAGE_KEY = 'perangkat_pembelajaran_docs_v1';
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('ErrorBoundary caught an error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-[400px] flex flex-col items-center justify-center p-8 bg-white rounded-3xl border border-rose-200 shadow-sm text-center space-y-4 my-8">
+          <div className="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center font-bold text-xl">⚠️</div>
+          <h2 className="text-lg font-bold text-slate-800">Terjadi Kendala Menampilkan Dokumen</h2>
+          <p className="text-xs text-slate-500 max-w-md">
+            Sistem mendeteksi format data yang perlu disesuaikan. Silakan muat ulang halaman atau kembali ke Dashboard.
+          </p>
+          <button
+            onClick={() => {
+              this.setState({ hasError: false });
+              if (this.props.onReset) this.props.onReset();
+            }}
+            className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs rounded-xl transition-colors"
+          >
+            Kembali ke Dashboard
+          </button>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [documents, setDocuments] = useState([]);
@@ -186,82 +226,84 @@ export default function App() {
       />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-        {activeTab === 'dashboard' && (
-          <Dashboard
-            documents={documents}
-            onNewDocument={handleNewDocument}
-            onSelectDoc={handleSelectDoc}
-            onDeleteDoc={handleDeleteDocument}
-            onLoadPreset={handleLoadPreset}
-            setActiveTab={setActiveTab}
-          />
-        )}
+        <ErrorBoundary key={activeTab} onReset={() => setActiveTab('dashboard')}>
+          {activeTab === 'dashboard' && (
+            <Dashboard
+              documents={documents}
+              onNewDocument={handleNewDocument}
+              onSelectDoc={handleSelectDoc}
+              onDeleteDoc={handleDeleteDocument}
+              onLoadPreset={handleLoadPreset}
+              setActiveTab={setActiveTab}
+            />
+          )}
 
-        {activeTab === 'prota' && (
-          <ProtaManager
-            onBack={() => setActiveTab('dashboard')}
-            onSaveToBank={handleSaveDocument}
-            exportProtaWord={exportProtaToWord}
-          />
-        )}
+          {activeTab === 'prota' && (
+            <ProtaManager
+              onBack={() => setActiveTab('dashboard')}
+              onSaveToBank={handleSaveDocument}
+              exportProtaWord={exportProtaToWord}
+            />
+          )}
 
-        {activeTab === 'prosem' && (
-          <ProsemManager
-            onBack={() => setActiveTab('dashboard')}
-            onSaveToBank={handleSaveDocument}
-            exportProsemWord={exportProsemToWord}
-          />
-        )}
+          {activeTab === 'prosem' && (
+            <ProsemManager
+              onBack={() => setActiveTab('dashboard')}
+              onSaveToBank={handleSaveDocument}
+              exportProsemWord={exportProsemToWord}
+            />
+          )}
 
-        {activeTab === 'materi-ajar' && (
-          <MateriAjarManager
-            onAttachToModul={() => setActiveTab('wizard')}
-          />
-        )}
+          {activeTab === 'materi-ajar' && (
+            <MateriAjarManager
+              onAttachToModul={() => setActiveTab('wizard')}
+            />
+          )}
 
-        {activeTab === 'wizard' && (
-          <ModulAjarWizard
-            key={currentDoc?.id || 'new-wizard'}
-            initialData={currentDoc}
-            onSave={handleSaveDocument}
-            onPreview={(doc) => {
-              setCurrentDoc(doc);
-              setActiveTab('preview');
-            }}
-          />
-        )}
+          {activeTab === 'wizard' && (
+            <ModulAjarWizard
+              key={currentDoc?.id || 'new-wizard'}
+              initialData={currentDoc}
+              onSave={handleSaveDocument}
+              onPreview={(doc) => {
+                setCurrentDoc(doc);
+                setActiveTab('preview');
+              }}
+            />
+          )}
 
-        {activeTab === 'preview' && (
-          <DocumentPreview
-            docData={currentDoc || documents[0]}
-            onEdit={() => setActiveTab('wizard')}
-            onBack={() => setActiveTab('dashboard')}
-          />
-        )}
+          {activeTab === 'preview' && (
+            <DocumentPreview
+              docData={currentDoc || documents[0]}
+              onEdit={() => setActiveTab('wizard')}
+              onBack={() => setActiveTab('dashboard')}
+            />
+          )}
 
-        {activeTab === 'bank' && (
-          <BankPerangkat
-            documents={documents}
-            onSelectDoc={handleSelectDoc}
-            onDeleteDoc={handleDeleteDocument}
-            onDuplicateDoc={handleDuplicateDocument}
-            onNewDoc={handleNewDocument}
-            onLoadPreset={handleLoadPreset}
-          />
-        )}
+          {activeTab === 'bank' && (
+            <BankPerangkat
+              documents={documents}
+              onSelectDoc={handleSelectDoc}
+              onDeleteDoc={handleDeleteDocument}
+              onDuplicateDoc={handleDuplicateDocument}
+              onNewDoc={handleNewDocument}
+              onLoadPreset={handleLoadPreset}
+            />
+          )}
 
-        {activeTab === 'templates' && (
-          <TemplateCatalog
-            onLoadPreset={handleLoadPreset}
-          />
-        )}
+          {activeTab === 'templates' && (
+            <TemplateCatalog
+              onLoadPreset={handleLoadPreset}
+            />
+          )}
 
-        {activeTab === 'ai-assistant' && (
-          <AIAssistantModal
-            onLoadPreset={handleLoadPreset}
-            setActiveTab={setActiveTab}
-          />
-        )}
+          {activeTab === 'ai-assistant' && (
+            <AIAssistantModal
+              onLoadPreset={handleLoadPreset}
+              setActiveTab={setActiveTab}
+            />
+          )}
+        </ErrorBoundary>
       </main>
 
       {/* FOOTER */}

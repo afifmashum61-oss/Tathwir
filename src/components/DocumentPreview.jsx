@@ -1,6 +1,7 @@
 import React from 'react';
 import { Printer, Download, ArrowLeft, Edit3, Heart } from 'lucide-react';
 import { triggerPrintDocument, exportToWordDoc, formatNamaDanGelar, formatKepalaHeader } from '../utils/exportUtils';
+import { generateAIContent } from '../utils/aiGenerator';
 
 const cleanMarkdownText = (str) => {
   if (!str) return '';
