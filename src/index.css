@@ -12,32 +12,44 @@
 }
 
 /* Custom Print Styles for Standard A4 Official Layout */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
 @media print {
   *, ::before, ::after {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-adjust: exact !important;
   }
-  body {
+
+  html, body {
     background-color: white !important;
     color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
+
   .no-print {
     display: none !important;
   }
+
   .print-only {
     display: block !important;
   }
+
   .printable-document {
     box-shadow: none !important;
-    padding: 0 !important;
+    padding: 12mm 15mm !important;
     margin: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
     border: none !important;
   }
+
   .cover-page-container {
-    min-height: 85vh !important;
+    min-height: 90vh !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
@@ -47,12 +59,9 @@
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
   }
+
   .page-break-before {
     page-break-before: always !important;
     break-before: page !important;
-  }
-  @page {
-    size: A4;
-    margin: 15mm 15mm 15mm 15mm;
   }
 }

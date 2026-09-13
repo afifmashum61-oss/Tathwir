@@ -44,7 +44,12 @@ export const formatKepalaHeader = (namaSekolah) => {
 };
 
 export const triggerPrintDocument = () => {
+  const originalTitle = document.title;
+  document.title = '';
   window.print();
+  setTimeout(() => {
+    document.title = originalTitle;
+  }, 1000);
 };
 
 export const exportToWordDoc = (docData) => {
