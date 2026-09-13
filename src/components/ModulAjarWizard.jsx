@@ -285,6 +285,26 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
                     />
                   </div>
                 </div>
+
+                {/* AI RE-GENERATE CALLOUT */}
+                <div className="bg-gradient-to-r from-teal-600 via-emerald-600 to-teal-700 text-white p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+                  <div className="flex items-start gap-2.5">
+                    <Sparkles className="w-5 h-5 text-amber-300 flex-shrink-0 mt-0.5 animate-pulse" />
+                    <div>
+                      <p className="text-xs font-extrabold text-white">Ingin Menyesuaikan Modul dengan Materi Baru Ini?</p>
+                      <p className="text-[11px] text-teal-100 font-medium">Klik tombol di samping agar Capaian Pembelajaran, TP, Langkah-langkah, Soal Sumatif & LKPD dibuat otomatis oleh AI sesuai <span className="underline font-bold text-amber-200">{formData.matpel || 'Mata Pelajaran'}</span>.</p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleAutoFillAI}
+                    disabled={isGenerating}
+                    className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-900 font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-md whitespace-nowrap transition-transform active:scale-95"
+                  >
+                    <Sparkles className={`w-4 h-4 ${isGenerating ? 'animate-spin' : ''}`} />
+                    {isGenerating ? 'Membuat Isi Modul AI...' : '✨ Buat Isi Modul Otomatis (AI)'}
+                  </button>
+                </div>
               </div>
 
               <div>

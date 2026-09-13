@@ -221,6 +221,7 @@ export default function App() {
 
         {activeTab === 'wizard' && (
           <ModulAjarWizard
+            key={currentDoc?.id || 'new-wizard'}
             initialData={currentDoc}
             onSave={handleSaveDocument}
             onPreview={(doc) => {
