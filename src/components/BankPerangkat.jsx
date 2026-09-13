@@ -109,7 +109,8 @@ export default function BankPerangkat({
           {filteredDocs.map((doc) => (
             <div
               key={doc.id}
-              className="bg-white p-5 rounded-2xl border border-slate-200 hover:border-teal-400 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+              onClick={() => onSelectDoc(doc)}
+              className="bg-white p-5 rounded-2xl border border-slate-200 hover:border-teal-400 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer group"
             >
               <div>
                 <div className="flex justify-between items-start mb-3">
@@ -129,7 +130,7 @@ export default function BankPerangkat({
                   </span>
                 </div>
 
-                <h3 className="font-bold text-slate-800 text-sm line-clamp-2 mb-2 leading-snug">
+                <h3 className="font-bold text-slate-800 text-sm line-clamp-2 mb-2 leading-snug group-hover:text-teal-700 transition-colors">
                   {doc.title}
                 </h3>
 
@@ -142,7 +143,10 @@ export default function BankPerangkat({
 
               <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
                 <button
-                  onClick={() => onSelectDoc(doc)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectDoc(doc);
+                  }}
                   className="px-3 py-1.5 rounded-lg bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold flex items-center gap-1 transition-colors"
                 >
                   <Eye className="w-3.5 h-3.5" /> Pratinjau / Cetak
@@ -150,7 +154,10 @@ export default function BankPerangkat({
 
                 <div className="flex items-center gap-1 text-slate-400">
                   <button
-                    onClick={() => onDuplicateDoc(doc)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onDuplicateDoc(doc);
+                    }}
                     className="p-1.5 hover:text-teal-600 hover:bg-teal-50 rounded-md transition-colors"
                     title="Duplikasi Dokumen"
                   >
@@ -159,7 +166,10 @@ export default function BankPerangkat({
 
                   {(doc.isProtected || doc.isPreset) ? (
                     <button
-                      onClick={() => onDeleteDoc(doc.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onDeleteDoc(doc.id);
+                      }}
                       className="p-1.5 text-amber-600 hover:bg-amber-50 rounded-md transition-colors"
                       title="Bahan Ajar Utama (Dilindungi & Tidak Dapat Dihapus)"
                     >
@@ -167,7 +177,10 @@ export default function BankPerangkat({
                     </button>
                   ) : (
                     <button
-                      onClick={() => onDeleteDoc(doc.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onDeleteDoc(doc.id);
+                      }}
                       className="p-1.5 hover:text-rose-600 hover:bg-rose-50 rounded-md transition-colors"
                       title="Hapus Dokumen"
                     >

@@ -1,3 +1,7 @@
+import React from 'react';
+import { Printer, Download, ArrowLeft, Edit3, Heart } from 'lucide-react';
+import { triggerPrintDocument, exportToWordDoc, formatNamaDanGelar, formatKepalaHeader } from '../utils/exportUtils';
+
 const cleanMarkdownText = (str) => {
   if (!str) return '';
   return str
