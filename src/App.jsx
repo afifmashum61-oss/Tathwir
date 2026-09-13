@@ -128,7 +128,7 @@ export default function App() {
       semester: 'I (Ganjil)',
       kurikulum: 'Kurikulum Merdeka (KBC - Deep Learning)',
       alokasiWaktu: '16 JP (8 kali pertemuan)',
-      tahunAjaran: '2024/2025',
+      tahunAjaran: '2026/2027',
       namaGuru: '',
       nipGuru: '',
       namaSekolah: '',

@@ -19,7 +19,7 @@ export default function ProtaManager({ onBack, onSaveToBank, exportProtaWord }) 
     matpel: 'BAHASA ARAB',
     kelas: 'VII',
     fase: 'D',
-    tahunAjaran: '2024/2025',
+    tahunAjaran: '2026/2027',
     namaGuru: 'Hj. Elik Nurlaili, S.Si., M.Pd.',
     nipGuru: '19780512 200501 2 004',
     namaKepala: 'Drs. H. Ahmad Fauzi, M.Ag.',

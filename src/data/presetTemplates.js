@@ -103,7 +103,7 @@ export const PRESET_TEMPLATES = [
     semester: 'I (Ganjil)',
     kurikulum: 'Kurikulum Merdeka (KBC - Deep Learning)',
     alokasiWaktu: '16 JP (8 kali pertemuan)',
-    tahunAjaran: '2024/2025',
+    tahunAjaran: '2026/2027',
     namaGuru: 'Ahmad Muzakki, S.Pd.I.',
     nipGuru: '19910512 201903 1 004',
     namaSekolah: 'MTs Darussalam Ngesong',
@@ -302,4 +302,19 @@ export const JENJANG_OPTIONS = [
   { label: 'MTs / SMP (Fase D - Kelas 7-9)', value: 'MTs / SMP / Fase D' },
   { label: 'MA / MAK / SMA (Fase E - Kelas 10)', value: 'MA / SMA / Fase E' },
   { label: 'MA / MAK / SMA (Fase F - Kelas 11-12)', value: 'MA / SMA / Fase F' }
+];
+
+export const KELAS_FASE_OPTIONS = [
+  { label: 'Kelas 1 (Fase A - SD/MI)', kelas: 'I (Satu)', fase: 'A', jenjang: 'SD / MI / Fase A' },
+  { label: 'Kelas 2 (Fase A - SD/MI)', kelas: 'II (Dua)', fase: 'A', jenjang: 'SD / MI / Fase A' },
+  { label: 'Kelas 3 (Fase B - SD/MI)', kelas: 'III (Tiga)', fase: 'B', jenjang: 'MI / SD / Fase B' },
+  { label: 'Kelas 4 (Fase B - SD/MI)', kelas: 'IV (Empat)', fase: 'B', jenjang: 'MI / SD / Fase B' },
+  { label: 'Kelas 5 (Fase C - SD/MI)', kelas: 'V (Lima)', fase: 'C', jenjang: 'MI / SD / Fase C' },
+  { label: 'Kelas 6 (Fase C - SD/MI)', kelas: 'VI (Enam)', fase: 'C', jenjang: 'MI / SD / Fase C' },
+  { label: 'Kelas 7 (Fase D - MTs/SMP)', kelas: 'VII (Tujuh)', fase: 'D', jenjang: 'MTs / SMP / Fase D' },
+  { label: 'Kelas 8 (Fase D - MTs/SMP)', kelas: 'VIII (Delapan)', fase: 'D', jenjang: 'MTs / SMP / Fase D' },
+  { label: 'Kelas 9 (Fase D - MTs/SMP)', kelas: 'IX (Sembilan)', fase: 'D', jenjang: 'MTs / SMP / Fase D' },
+  { label: 'Kelas 10 (Fase E - MA/SMA)', kelas: 'X (Sepuluh)', fase: 'E', jenjang: 'MA / SMA / Fase E' },
+  { label: 'Kelas 11 (Fase F - MA/SMA)', kelas: 'XI (Sebelas)', fase: 'F', jenjang: 'MA / SMA / Fase F' },
+  { label: 'Kelas 12 (Fase F - MA/SMA)', kelas: 'XII (Dua Belas)', fase: 'F', jenjang: 'MA / SMA / Fase F' }
 ];

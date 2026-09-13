@@ -3,7 +3,7 @@ import {
   Sparkles, CheckCircle2, ArrowRight, ArrowLeft, Save, Eye, 
   Heart, BookOpen, User, Building, FileText, Check, Plus, Trash2, CheckSquare, Square, BookMarked
 } from 'lucide-react';
-import { JURUSAN_MATPEL_OPTIONS, JENJANG_OPTIONS, KURIKULUM_OPTIONS, SEMESTER_OPTIONS, PILAR_CINTA_KEMENAG } from '../data/presetTemplates';
+import { JURUSAN_MATPEL_OPTIONS, JENJANG_OPTIONS, KURIKULUM_OPTIONS, SEMESTER_OPTIONS, PILAR_CINTA_KEMENAG, KELAS_FASE_OPTIONS } from '../data/presetTemplates';
 import { generateAIContent } from '../utils/aiGenerator';
 
 const PROFIL_PANCASILA_LIST = [
@@ -25,11 +25,11 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
     petaKonsep: '1. Ungkapan Sapaan -> 2. Kata Ganti -> 3. Kata Tanya -> 4. Profesi',
     jenjang: 'MTs / SMP / Fase D',
     fase: 'D',
-    kelas: 'VII',
+    kelas: 'VII (Tujuh)',
     semester: 'I (Ganjil)',
     kurikulum: 'Kurikulum Merdeka (KBC - Deep Learning)',
     alokasiWaktu: '16 JP (8 kali pertemuan)',
-    tahunAjaran: '2024/2025',
+    tahunAjaran: '2026/2027',
     namaGuru: '',
     nipGuru: '',
     namaSekolah: '',
@@ -132,7 +132,9 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
         formData.bab || formData.title,
         formData.jenjang,
         formData.modelPembelajaran,
-        formData.kurikulum.includes('Cinta')
+        formData.kurikulum.includes('Cinta'),
+        formData.petaKonsep,
+        formData.materiUraian
       );
       setFormData(prev => ({
         ...prev,
@@ -140,6 +142,19 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
       }));
       setIsGenerating(false);
     }, 600);
+  };
+
+  const handleKelasFaseSelect = (e) => {
+    const selectedVal = e.target.value;
+    const foundOpt = KELAS_FASE_OPTIONS.find(o => o.label === selectedVal);
+    if (foundOpt) {
+      setFormData(prev => ({
+        ...prev,
+        kelas: foundOpt.kelas,
+        fase: foundOpt.fase,
+        jenjang: foundOpt.jenjang
+      }));
+    }
   };
 
   const handleSaveDoc = () => {
@@ -355,40 +370,57 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Kelas (misal: VII / VIII / IX / X)</label>
-                <input
-                  type="text"
-                  value={formData.kelas}
-                  onChange={(e) => handleChange('kelas', e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-teal-500 outline-none"
-                  placeholder="misal: VII"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
+              {/* PILIHAN CEPAT KELAS & FASE */}
+              <div className="md:col-span-2 bg-amber-50/60 p-4 rounded-2xl border border-amber-200 space-y-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Fase</label>
-                  <input
-                    type="text"
-                    value={formData.fase || 'D'}
-                    onChange={(e) => handleChange('fase', e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-teal-500 outline-none uppercase"
-                    placeholder="misal: D"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Semester</label>
+                  <label className="block text-xs font-extrabold text-amber-900 mb-1 flex items-center gap-1.5">
+                    🎯 Pilih Kelas & Fase Pembelajaran (Pilihan Cepat)
+                  </label>
                   <select
-                    value={formData.semester || 'I (Ganjil)'}
-                    onChange={(e) => handleChange('semester', e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-teal-500 outline-none"
+                    onChange={handleKelasFaseSelect}
+                    className="w-full px-3.5 py-2.5 text-xs rounded-xl border border-amber-300 focus:border-amber-500 outline-none bg-white font-bold text-slate-800"
                   >
-                    {SEMESTER_OPTIONS.map(s => (
-                      <option key={s} value={s}>{s}</option>
+                    <option value="">-- Klik di sini untuk memilih Kelas & Fase otomatis --</option>
+                    {KELAS_FASE_OPTIONS.map(opt => (
+                      <option key={opt.label} value={opt.label}>{opt.label}</option>
                     ))}
                   </select>
+                  <p className="text-[11px] text-amber-800 mt-1">Pilih tingkat kelas Anda di atas, maka Kelas & Fase akan terisi otomatis tanpa membingungkan.</p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Kelas Terpilih</label>
+                    <input
+                      type="text"
+                      value={formData.kelas || ''}
+                      onChange={(e) => handleChange('kelas', e.target.value)}
+                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:border-teal-500 outline-none bg-white font-bold"
+                      placeholder="misal: VII (Tujuh)"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Fase Terpilih</label>
+                    <input
+                      type="text"
+                      value={formData.fase || 'D'}
+                      onChange={(e) => handleChange('fase', e.target.value)}
+                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:border-teal-500 outline-none uppercase bg-white font-bold"
+                      placeholder="misal: D"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Semester</label>
+                    <select
+                      value={formData.semester || 'I (Ganjil)'}
+                      onChange={(e) => handleChange('semester', e.target.value)}
+                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:border-teal-500 outline-none bg-white font-bold"
+                    >
+                      {SEMESTER_OPTIONS.map(s => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
 
@@ -404,13 +436,13 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Tahun Pelajaran</label>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Tahun Pelajaran / Ajaran</label>
                 <input
                   type="text"
-                  value={formData.tahunAjaran}
+                  value={formData.tahunAjaran || '2026/2027'}
                   onChange={(e) => handleChange('tahunAjaran', e.target.value)}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-teal-500 outline-none"
-                  placeholder="misal: 2024/2025"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-teal-500 outline-none font-bold text-teal-800"
+                  placeholder="2026/2027"
                 />
               </div>
 
