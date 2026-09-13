@@ -60,8 +60,30 @@
     padding-bottom: 0 !important;
   }
 
-  .page-break-before {
-    page-break-before: always !important;
+  /* Section Header Orphan Prevention */
+  h1, h2, h3, h4, h5, h6,
+  .section-header,
+  .section-title,
+  .print\:break-after-avoid,
+  div[class*="bg-emerald-100"],
+  div[class*="bg-emerald-800"],
+  div[class*="bg-emerald-900"] {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  /* Section Containers & Cards Break Prevention */
+  table, tr, td, th,
+  .space-y-3,
+  .space-y-4,
+  .print\:break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .page-break-before,
+  .print\:break-before-page {
     break-before: page !important;
+    page-break-before: always !important;
   }
 }

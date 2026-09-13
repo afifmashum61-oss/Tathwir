@@ -424,8 +424,8 @@ export default function DocumentPreview({ docData, onEdit, onBack }) {
         </div>
 
         {/* H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI (8 PERTEMUAN LENGKAP) */}
-        <div className="space-y-4 pt-2">
-          <div className="bg-emerald-100/80 text-emerald-950 font-black text-xs px-3 py-1.5 rounded-md uppercase flex justify-between items-center">
+        <div className="space-y-4 pt-2 print:break-inside-avoid" style={{ pageBreakInside: 'avoid', breakInside: 'avoid' }}>
+          <div className="bg-emerald-100/80 text-emerald-950 font-black text-xs px-3 py-1.5 rounded-md uppercase flex justify-between items-center print:break-after-avoid" style={{ pageBreakAfter: 'avoid', breakAfter: 'avoid' }}>
             <span>H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI</span>
             <span className="bg-emerald-700 text-white px-2 py-0.5 rounded text-[10px]">
               {((docData.pertemuanList && docData.pertemuanList.length) || 8)} Pertemuan Lengkap
