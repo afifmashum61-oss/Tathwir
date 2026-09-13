@@ -27,6 +27,15 @@ export const formatNamaDanGelar = (str) => {
   return formatted;
 };
 
+export const cleanMarkdownText = (str) => {
+  if (!str) return '';
+  return str
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
+    .replace(/^---$/gm, '')
+    .replace(/`{1,3}(.*?)`{1,3}/g, '$1');
+};
+
 export const formatKepalaHeader = (namaSekolah) => {
   if (!namaSekolah) return 'Kepala Madrasah / Sekolah';
   const clean = namaSekolah.trim();
@@ -396,8 +405,8 @@ export const exportToWordDoc = (docData) => {
         </div>
 
         <b>LEMBAR AKTIVITAS & TUGAS SISWA:</b>
-        <div style="background-color: #ffffff; border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; margin-top: 6px; font-family: monospace; font-size: 9.5pt; white-space: pre-line;">
-${docData.lkpdTugas || docData.lkpdContent || 'TUGAS LKPD:\n1. Praktikkan dialog perkenalan bersama teman pasanganmu.\n2. Tuliskan 3 kalimat sapaan kasih sayang yang paling kamu sukai di lembar ini.'}
+        <div style="background-color: #ffffff; border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; margin-top: 6px; font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; font-size: 9.5pt; white-space: pre-line;">
+${cleanMarkdownText(docData.lkpdTugas || docData.lkpdContent || 'TUGAS LKPD:\n1. Praktikkan dialog perkenalan bersama teman pasanganmu.\n2. Tuliskan 3 kalimat sapaan kasih sayang yang paling kamu sukai di lembar ini.')}
         </div>
       </div>
 
@@ -409,23 +418,23 @@ ${docData.lkpdTugas || docData.lkpdContent || 'TUGAS LKPD:\n1. Praktikkan dialog
 
       <div style="border: 1px solid #cbd5e1; background-color: #f8fafc; padding: 12px; border-radius: 6px; margin-top: 10px;">
         <div class="sub-badge-amber" style="background-color: #f59e0b; color: #000; font-weight: bold; padding: 4px 8px; font-size: 9.5pt;">A. NASKAH SOAL ASESMEN SUMATIF (PILIHAN GANDA & ESAI)</div>
-        <div style="background-color: #ffffff; border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; margin-top: 6px; font-family: monospace; font-size: 9.5pt; white-space: pre-line;">
-${docData.soalSumatif || `I. PILIHAN GANDA:
+        <div style="background-color: #ffffff; border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; margin-top: 6px; font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; font-size: 9.5pt; white-space: pre-line;">
+${cleanMarkdownText(docData.soalSumatif || `I. PILIHAN GANDA:
 1. Arti dari sapaan "صَبَاحَ الخَيْرِ" (Sabahal khair) adalah...
    a. Selamat sore  b. Selamat malam  c. Selamat pagi  d. Sampai jumpa
 2. Ungkapan balasan saat disapa "أَهْلًا وَسَهْلًا" adalah...
    a. صَبَاحَ النُّوْرِ  b. أَهْلًا بِكَ  c. الحَمْدُ لِلَّهِ  d. مَعَ السَّلَامَةِ
 
 II. URAIAN / ESAI:
-1. Tuliskan 3 Kata Ganti (Dhamir Munfashil) dalam Bahasa Arab beserta artinya!`}
+1. Tuliskan 3 Kata Ganti (Dhamir Munfashil) dalam Bahasa Arab beserta artinya!`)}
         </div>
 
         <div class="sub-badge" style="background-color: #047857; color: #fff; font-weight: bold; padding: 4px 8px; font-size: 9.5pt; margin-top: 14px;">B. KUNCI JAWABAN & PEDOMAN PENSKORAN</div>
-        <div style="background-color: #f0fdf4; border: 1px solid #6ee7b7; padding: 12px; border-radius: 6px; margin-top: 6px; font-family: monospace; font-size: 9.5pt; white-space: pre-line;">
-${docData.kunciSumatif || `KUNCI JAWABAN & SKOR:
+        <div style="background-color: #f0fdf4; border: 1px solid #6ee7b7; padding: 12px; border-radius: 6px; margin-top: 6px; font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; font-size: 9.5pt; white-space: pre-line;">
+${cleanMarkdownText(docData.kunciSumatif || `KUNCI JAWABAN & SKOR:
 I. Pilihan Ganda: 1. C, 2. B (Skor per nomor: 20 poin)
 II. Esai: 1. أَنَا (Saya), أَنْتَ (Kamu L), هُوَ (Dia L) (Skor: 40 poin)
-Total Skor Maksimal = 100 Poin.`}
+Total Skor Maksimal = 100 Poin.`)}
         </div>
       </div>
 

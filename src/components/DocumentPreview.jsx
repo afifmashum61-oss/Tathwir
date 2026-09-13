@@ -1,6 +1,11 @@
-import React from 'react';
-import { Printer, Download, ArrowLeft, Edit3, Heart } from 'lucide-react';
-import { triggerPrintDocument, exportToWordDoc, formatNamaDanGelar, formatKepalaHeader } from '../utils/exportUtils';
+const cleanMarkdownText = (str) => {
+  if (!str) return '';
+  return str
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
+    .replace(/^---$/gm, '')
+    .replace(/`{1,3}(.*?)`{1,3}/g, '$1');
+};
 
 export default function DocumentPreview({ docData, onEdit, onBack }) {
   if (!docData) return null;
@@ -535,8 +540,8 @@ export default function DocumentPreview({ docData, onEdit, onBack }) {
 
             <div className="space-y-2">
               <span className="font-bold text-slate-900 uppercase text-[11px]">Lembar Aktivitas & Tugas Siswa:</span>
-              <div className="bg-white p-4 rounded-xl border border-slate-300 whitespace-pre-line text-slate-800 font-mono text-xs leading-relaxed min-h-[140px]">
-                {docData.lkpdTugas || docData.lkpdContent || 'TUGAS LKPD:\n1. Praktikkan dialog perkenalan bersama teman pasanganmu.\n2. Tuliskan 3 kalimat sapaan kasih sayang yang paling kamu sukai di lembar ini.'}
+              <div className="bg-white p-4 rounded-xl border border-slate-300 whitespace-pre-line text-slate-800 font-sans text-xs leading-relaxed font-medium min-h-[140px]">
+                {cleanMarkdownText(docData.lkpdTugas || docData.lkpdContent || 'TUGAS LKPD:\n1. Praktikkan dialog perkenalan bersama teman pasanganmu.\n2. Tuliskan 3 kalimat sapaan kasih sayang yang paling kamu sukai di lembar ini.')}
               </div>
             </div>
           </div>
@@ -554,15 +559,15 @@ export default function DocumentPreview({ docData, onEdit, onBack }) {
               <span className="font-extrabold text-slate-900 uppercase text-[11px] bg-amber-200 px-2 py-0.5 rounded">
                 A. NASKAH SOAL ASESMEN SUMATIF (PILIHAN GANDA & ESAI)
               </span>
-              <div className="bg-white p-4 rounded-xl border border-slate-300 whitespace-pre-line text-slate-800 font-mono text-xs leading-relaxed">
-                {docData.soalSumatif || `I. PILIHAN GANDA:
+              <div className="bg-white p-4 rounded-xl border border-slate-300 whitespace-pre-line text-slate-800 font-sans text-xs leading-relaxed font-medium">
+                {cleanMarkdownText(docData.soalSumatif || `I. PILIHAN GANDA:
 1. Arti dari sapaan "صَبَاحَ الخَيْرِ" (Sabahal khair) adalah...
    a. Selamat sore  b. Selamat malam  c. Selamat pagi  d. Sampai jumpa
 2. Ungkapan balasan saat disapa "أَهْلًا وَسَهْلًا" adalah...
    a. صَبَاحَ النُّوْرِ  b. أَهْلًا بِكَ  c. الحَمْدُ لِلَّهِ  d. مَعَ السَّلَامَةِ
 
 II. URAIAN / ESAI:
-1. Tuliskan 3 Kata Ganti (Dhamir Munfashil) dalam Bahasa Arab beserta artinya!`}
+1. Tuliskan 3 Kata Ganti (Dhamir Munfashil) dalam Bahasa Arab beserta artinya!`)}
               </div>
             </div>
 
@@ -571,11 +576,11 @@ II. URAIAN / ESAI:
               <span className="font-extrabold text-slate-900 uppercase text-[11px] bg-emerald-200 px-2 py-0.5 rounded">
                 B. KUNCI JAWABAN & PEDOMAN PENSKORAN
               </span>
-              <div className="bg-white p-4 rounded-xl border border-emerald-300 whitespace-pre-line text-slate-800 font-mono text-xs leading-relaxed bg-emerald-50/20">
-                {docData.kunciSumatif || `KUNCI JAWABAN & SKOR:
+              <div className="bg-white p-4 rounded-xl border border-emerald-300 whitespace-pre-line text-slate-800 font-sans text-xs leading-relaxed font-medium bg-emerald-50/20">
+                {cleanMarkdownText(docData.kunciSumatif || `KUNCI JAWABAN & SKOR:
 I. Pilihan Ganda: 1. C, 2. B (Skor per nomor: 20 poin)
 II. Esai: 1. أَنَا (Saya), أَنْتَ (Kamu L), هُوَ (Dia L) (Skor: 40 poin)
-Total Skor Maksimal = 100 Poin.`}
+Total Skor Maksimal = 100 Poin.`)}
               </div>
             </div>
           </div>
