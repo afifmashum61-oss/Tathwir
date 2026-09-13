@@ -54,7 +54,11 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
     asesmenDiagnostik: '',
     asesmenFormatif: '',
     asesmenSumatif: '',
+    soalSumatif: '',
+    kunciSumatif: '',
     lkpdTitle: 'LKPD Refleksi Kasih Sayang & Empati',
+    lkpdPetunjuk: '',
+    lkpdTugas: '',
     lkpdContent: '',
     rubrik: [
       { kriteria: 'Fashahah & Kelancaran', berkembang: 'Perlu bimbingan', layak: 'Lancar dan tepat', mahir: 'Sangat fasih dan santun' }
@@ -721,6 +725,30 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
               </div>
             </div>
 
+            {/* Detail Naskah Soal Asesmen Sumatif */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Naskah Soal Asesmen Sumatif (Pilihan Ganda & Uraian)</label>
+                <textarea
+                  rows={6}
+                  value={formData.soalSumatif}
+                  onChange={(e) => handleChange('soalSumatif', e.target.value)}
+                  className="w-full p-3 text-xs rounded-xl border border-slate-200 focus:border-teal-500 outline-none font-mono"
+                  placeholder="Daftar Soal Pilihan Ganda & Uraian..."
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Kunci Jawaban & Rubrik Penskoran Sumatif</label>
+                <textarea
+                  rows={6}
+                  value={formData.kunciSumatif}
+                  onChange={(e) => handleChange('kunciSumatif', e.target.value)}
+                  className="w-full p-3 text-xs rounded-xl border border-slate-200 focus:border-teal-500 outline-none font-mono"
+                  placeholder="Kunci Jawaban dan Kriteria Bobot Skor..."
+                />
+              </div>
+            </div>
+
             {/* Rubrik Penilaian Table Editor */}
             <div className="space-y-3 pt-2">
               <div className="flex justify-between items-center">
@@ -784,7 +812,7 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
 
             {/* LKPD Editor */}
             <div className="space-y-3 pt-2">
-              <label className="block text-xs font-bold text-slate-700">Lampiran LKPD Refleksi Cinta</label>
+              <label className="block text-xs font-bold text-slate-700">Lampiran Lembar Kerja Peserta Didik (LKPD)</label>
               <input
                 type="text"
                 value={formData.lkpdTitle}
@@ -792,13 +820,28 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
                 className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 outline-none font-bold"
                 placeholder="Judul LKPD"
               />
-              <textarea
-                rows={4}
-                value={formData.lkpdContent}
-                onChange={(e) => handleChange('lkpdContent', e.target.value)}
-                className="w-full p-3 text-xs rounded-xl border border-slate-200 outline-none"
-                placeholder="Instruksi kegiatan refleksi dan kepedulian siswa..."
-              />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-600 mb-1">Petunjuk Pengerjaan LKPD</label>
+                  <textarea
+                    rows={4}
+                    value={formData.lkpdPetunjuk}
+                    onChange={(e) => handleChange('lkpdPetunjuk', e.target.value)}
+                    className="w-full p-3 text-xs rounded-xl border border-slate-200 outline-none"
+                    placeholder="Instruksi pengerjaan untuk siswa..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-bold text-slate-600 mb-1">Tugas & Pertanyaan LKPD Siswa</label>
+                  <textarea
+                    rows={4}
+                    value={formData.lkpdTugas || formData.lkpdContent}
+                    onChange={(e) => handleChange('lkpdTugas', e.target.value)}
+                    className="w-full p-3 text-xs rounded-xl border border-slate-200 outline-none font-mono text-xs"
+                    placeholder="Daftar isian & aktivitas tugas siswa..."
+                  />
+                </div>
+              </div>
             </div>
           </div>
         )}

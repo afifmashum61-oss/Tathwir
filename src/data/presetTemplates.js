@@ -217,10 +217,58 @@ export const PRESET_TEMPLATES = [
 
     asesmenDiagnostik: 'Tanya jawab lisan tentang kosakata Arab dasar (misal: "Siapa tahu arti \'ana\'?") dan menulis huruf hijaiyah.',
     asesmenFormatif: 'Observasi keaktifan & keberanian diskusi, Penilaian Kinerja pelafalan hiwar, Tugas Tertulis latihan buku.',
-    asesmenSumatif: 'Tes tulis mufrodat & tarkib Bab 1, serta Tes Praktik presentasi paragraf perkenalan.',
+    asesmenSumatif: 'Tes Tulis Pilihan Ganda & Uraian Mufrodat/Tarkib Bab 1 (Al-Ta\'aruf), serta Tes Praktik Unjuk Kerja Hiwar KBC.',
+
+    soalSumatif: `I. PILIHAN GANDA (Pilihlah jawaban a, b, c, atau d yang paling tepat):
+1. Arti dari sapaan "صَبَاحَ الخَيْرِ" (Sabahal khair) adalah...
+   a. Selamat sore  b. Selamat malam  c. Selamat pagi  d. Sampai jumpa
+2. Ungkapan balasan yang tepat saat disapa "أَهْلًا وَسَهْلًا" (Ahlan wa sahlan) adalah...
+   a. صَبَاحَ النُّوْرِ  b. أَهْلًا بِكَ  c. الحَمْدُ لِلَّهِ  d. مَعَ السَّلَامَةِ
+3. Susunan kalimat Mubtada' (dhamir) + Khabar (profesi) yang tepat di bawah ini adalah...
+   a. أَنَا طَالِبٌ  b. طَالِبٌ أَنَا  c. فِي المَدْرَسَةِ  d. صَبَاحُ الخَيْرِ
+4. Kalimat "هُوَ مُدَرِّسٌ" jika diterjemahkan ke dalam Bahasa Indonesia berarti...
+   a. Saya seorang siswa  b. Dia (laki-laki) seorang guru  c. Kamu seorang siswa  d. Dia seorang dokter
+
+II. URAIAN / ESAI:
+1. Tuliskan 3 Kata Ganti (Dhamir Munfashil) dalam Bahasa Arab beserta artinya!
+2. Menyapa kawan dengan senyum dan ramah merupakan wujud ukhuwah islamiyah. Buatlah dialog perkenalan singkat (3 baris) antara Ahmad dan Ali!`,
+
+    kunciSumatif: `KUNCI JAWABAN & PEDOMAN PENSKORAN ASESMEN SUMATIF:
+
+I. PILIHAN GANDA:
+1. C (Selamat pagi) - Skor 15
+2. B (أَهْلًا بِكَ) - Skor 15
+3. A (أَنَا طَالِبٌ) - Skor 15
+4. B (Dia (laki-laki) seorang guru) - Skor 15
+Subtotal Pilihan Ganda = 60 Poin
+
+II. URAIAN / ESAI:
+1. Contoh jawaban: أَنَا (Saya), أَنْتَ (Kamu Laki-laki), هُوَ (Dia Laki-laki). (Skor 20)
+2. Contoh Dialog:
+   أَحْمَد : السَّلَامُ عَلَيْكُمْ، أَنَا أَحْمَد. مَا اسْمُكَ؟
+   عَلِيّ  : وَعَلَيْكُمُ السَّلَام، أَنَا عَلِيّ. أَهْلًا بِكَ!
+   أَحْمَد : أَهْلًا بِكَ يَا أَخِي!
+   (Skor 20)
+
+TOTAL SKOR MAKSIMAL = 100 POIN.`,
 
     lkpdTitle: 'LKPD Hiwar al-Ta\'aruf Berbasis Deep Learning & Cinta',
-    lkpdContent: 'Tugas Pasangan (Role Playing):\n1. Buatlah dialog perkenalan Bahasa Arab memuat sapaan (at-tahiyyat), nama, asal daerah, dan ungkapan ukhuwah.\n2. Praktikkan di depan kelas dengan intonasi yang ramah dan saling tersenyum.',
+    lkpdPetunjuk: `PETUNJUK PENGERJAAN LKPD:
+1. Mulailah dengan membaca Basmalah dan berdoa bersama pasangan belajarmu.
+2. Bacalah dialog (hiwar) dan instruksi tugas perkenalan dengan cermat.
+3. Kerjakan tugas secara jujur, saling membantu (gotong royong), dan tunjukkan adab kesantunan serta kasih sayang sesama teman.`,
+    lkpdTugas: `LEMBAR TUGAS & AKTIVITAS PESERTA DIDIK:
+
+TUGAS 1: ROLE PLAYING & WANCARA PERKENALAN (PAIR WORK)
+Lakukan dialog perkenalan bersama teman sebangkumu, lalu isilah identitas temanmu di bawah ini dalam Bahasa Arab/Indonesia:
+1. Name / Nom : ....................................................................................................
+2. Origin / Asal Daerah : ....................................................................................................
+3. Hobby / Cita-cita : ....................................................................................................
+
+TUGAS 2: MENYUSUN KALIMAT TARKIB MUBTADA + KHABAR
+Susunlah kata-kata di bawah ini menjadi kalimat sempurna:
+1. [ طَالِبٌ - أَنَا - نَشِيْطٌ ]  --->  ....................................................................................
+2. [ مِنْ - أَنْتَ - جُومْبَانْج ] --->  ....................................................................................`,
 
     rubrik: [
       { kriteria: 'Fashahah & Kelancaran Pelafalan', berkembang: 'Pelafalan masih kaku', layak: 'Lancar dan mahraj cukup tepat', mahir: 'Sangat fasih, santun, dan natural' },

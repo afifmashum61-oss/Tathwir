@@ -84,10 +84,51 @@ export const generateAIContent = (subject, topic, level, model = 'Deep Learning 
     
     asesmenDiagnostik: `Tanya jawab awal kosakata dasar dan tes kesiapan emosional.`,
     asesmenFormatif: `Observasi sikap keaktifan, unjuk kerja dialog, dan latihan tertulis.`,
-    asesmenSumatif: `Tes tulis mufrodat & tarkib, serta Tes Praktik presentasi perkenalan lisan/tulisan.`,
+    asesmenSumatif: `Tes Tulis Pilihan Ganda & Uraian ${cleanTopic}, serta Tes Praktik Unjuk Kerja KBC.`,
+
+    soalSumatif: `I. PILIHAN GANDA (Pilihlah jawaban yang paling tepat):
+1. Apakah arti sapaan dan bentuk penghormatan utama saat bertemu kawan baru?
+   a. Mengabaikan  b. Menyapa dengan ramah & salam  c. Berpura-pura tidak kenal  d. Diam saja
+2. Mengapa kita perlu berkomunikasi dengan sopan dan penuh empati?
+   a. Agar mendapat hadiah  b. Wujud kasih sayang & ukhuwah  c. Agar dipuji  d. Syarat nilai semata
+3. Sikap terbaik saat teman menyampaikan pendapat di kelas adalah...
+   a. Memotong pembicaraan  b. Menyimak dengan saksama  c. Tertawa  d. Meninggalkan ruangan
+
+II. URAIAN / ESAI:
+1. Tuliskan 3 ungkapan atau sikap kasih sayang yang dapat kamu lakukan dalam pembelajaran ${cleanTopic}!
+2. Buatlah contoh paragraf/dialog singkat tentang ${cleanTopic} berbasis nilai kasih sayang dan empati!`,
+
+    kunciSumatif: `KUNCI JAWABAN & PEDOMAN PENSKORAN:
+
+I. Pilihan Ganda:
+1. B (Menyapa dengan ramah & salam) - Skor 20
+2. B (Wujud kasih sayang & ukhuwah) - Skor 20
+3. B (Menyimak dengan saksama) - Skor 20
+Subtotal PG = 60 Poin
+
+II. Uraian / Esai:
+1. Menyapa dengan senyum, mendengarkan saat teman bicara, membantu teman yang kesulitan. (Skor 20)
+2. Jawaban memuat dialog/paragraf ${cleanTopic} yang santun dan logis. (Skor 20)
+Total Skor Maksimal = 100 Poin.`,
     
     lkpdTitle: `LKPD ${cleanTopic} Berbasis Deep Learning & Cinta`,
-    lkpdContent: `PETUNJUK DEEP LEARNING:\n1. Praktikkan dialog perkenalan bersama teman pasanganmu.\n2. Tuliskan 3 kalimat sapaan kasih sayang yang paling kamu sukai.`,
+    lkpdPetunjuk: `PETUNJUK PENGERJAAN LKPD:
+1. Berdoalah sebelum mulai mengerjakan lembar kerja ini.
+2. Bacalah instruksi dan materi ${cleanTopic} dengan teliti.
+3. Kerjakan secara mandiri atau berpasangan dengan jujur, saling menghargai, dan menanamkan nilai kasih sayang.`,
+    lkpdTugas: `LEMBAR TUGAS & AKTIVITAS PESERTA DIDIK:
+
+TUGAS 1: REFLEKSI & PEMAHAMAN BERMAKNA
+Tuliskan pendapatmu tentang bagaimana materi ${cleanTopic} dapat membantumu menjadi pribadi yang lebih berempati dan penuh kasih sayang!
+Jawaban: ................................................................................................................................
+.............................................................................................................................................
+
+TUGAS 2: AKTIVITAS PRAKTIK / UNJUK KERJA
+- Lakukan aktivitas kelompok/berpasangan terkait ${cleanTopic}.
+- Catat hasil diskusi dan pesan kebaikan yang kamu dapatkan di bawah ini:
+1. Nama Teman Kelompok : ................................................................................................
+2. Pengalaman Pembelajaran : ................................................................................................
+3. Pesan Kasih Sayang     : ................................................................................................`,
 
     nilaiCinta: [
       'Cinta Allah SWT & Rasul-Nya',

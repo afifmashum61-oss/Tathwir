@@ -512,6 +512,82 @@ export default function DocumentPreview({ docData, onEdit, onBack }) {
           </div>
         </div>
 
+        {/* J. LAMPIRAN 1: LEMBAR KERJA PESERTA DIDIK (LKPD) */}
+        <div className="space-y-3 pt-6 print:break-before-page" style={{ pageBreakBefore: 'always', breakBefore: 'page' }}>
+          <div className="bg-emerald-800 text-white font-black text-xs px-4 py-2 rounded-md uppercase text-center tracking-wide">
+            LAMPIRAN 1 : LEMBAR KERJA PESERTA DIDIK (LKPD)
+          </div>
+
+          <div className="p-4 border-2 border-emerald-600 rounded-xl bg-emerald-50/20 space-y-4 text-xs">
+            <div className="grid grid-cols-2 gap-4 pb-3 border-b border-emerald-200 text-[11px] font-semibold text-slate-800">
+              <div>
+                <p>Nama Siswa : ................................................................</p>
+                <p>Kelas / Fase : {docData.kelas || 'VII'} / {docData.fase || 'D'}</p>
+              </div>
+              <div>
+                <p>Mata Pelajaran : {docData.matpel || 'BAHASA ARAB'}</p>
+                <p>Tanggal : ................................................................</p>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-extrabold text-teal-900 text-sm mb-1">{docData.lkpdTitle || 'LKPD Pembelajaran KBC'}</h4>
+              <div className="bg-white p-3 rounded-lg border border-teal-200 space-y-1">
+                <span className="font-bold text-teal-800 uppercase text-[11px]">Petunjuk Pengerjaan:</span>
+                <p className="text-slate-700 whitespace-pre-line leading-relaxed text-[11px]">
+                  {docData.lkpdPetunjuk || '1. Berdoalah sebelum mulai mengerjakan.\n2. Bacalah instruksi tugas dengan teliti.\n3. Kerjakan secara mandiri atau berpasangan dengan jujur dan santun.'}
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <span className="font-bold text-slate-900 uppercase text-[11px]">Lembar Aktivitas & Tugas Siswa:</span>
+              <div className="bg-white p-4 rounded-xl border border-slate-300 whitespace-pre-line text-slate-800 font-mono text-xs leading-relaxed min-h-[140px]">
+                {docData.lkpdTugas || docData.lkpdContent || 'TUGAS LKPD:\n1. Praktikkan dialog perkenalan bersama teman pasanganmu.\n2. Tuliskan 3 kalimat sapaan kasih sayang yang paling kamu sukai di lembar ini.'}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* K. LAMPIRAN 2: ASESMEN SUMATIF (KISI-KISI, NASKAH SOAL & KUNCI JAWABAN) */}
+        <div className="space-y-3 pt-6 print:break-before-page" style={{ pageBreakBefore: 'always', breakBefore: 'page' }}>
+          <div className="bg-emerald-800 text-white font-black text-xs px-4 py-2 rounded-md uppercase text-center tracking-wide">
+            LAMPIRAN 2 : NASKAH SOAL ASESMEN SUMATIF & KUNCI JAWABAN
+          </div>
+
+          <div className="p-4 border-2 border-slate-300 rounded-xl bg-slate-50 space-y-4 text-xs">
+            {/* NASKAH SOAL */}
+            <div className="space-y-2">
+              <span className="font-extrabold text-slate-900 uppercase text-[11px] bg-amber-200 px-2 py-0.5 rounded">
+                A. NASKAH SOAL ASESMEN SUMATIF (PILIHAN GANDA & ESAI)
+              </span>
+              <div className="bg-white p-4 rounded-xl border border-slate-300 whitespace-pre-line text-slate-800 font-mono text-xs leading-relaxed">
+                {docData.soalSumatif || `I. PILIHAN GANDA:
+1. Arti dari sapaan "صَبَاحَ الخَيْرِ" (Sabahal khair) adalah...
+   a. Selamat sore  b. Selamat malam  c. Selamat pagi  d. Sampai jumpa
+2. Ungkapan balasan saat disapa "أَهْلًا وَسَهْلًا" adalah...
+   a. صَبَاحَ النُّوْرِ  b. أَهْلًا بِكَ  c. الحَمْدُ لِلَّهِ  d. مَعَ السَّلَامَةِ
+
+II. URAIAN / ESAI:
+1. Tuliskan 3 Kata Ganti (Dhamir Munfashil) dalam Bahasa Arab beserta artinya!`}
+              </div>
+            </div>
+
+            {/* KUNCI JAWABAN & PEDOMAN PENSKORAN */}
+            <div className="space-y-2 pt-2">
+              <span className="font-extrabold text-slate-900 uppercase text-[11px] bg-emerald-200 px-2 py-0.5 rounded">
+                B. KUNCI JAWABAN & PEDOMAN PENSKORAN
+              </span>
+              <div className="bg-white p-4 rounded-xl border border-emerald-300 whitespace-pre-line text-slate-800 font-mono text-xs leading-relaxed bg-emerald-50/20">
+                {docData.kunciSumatif || `KUNCI JAWABAN & SKOR:
+I. Pilihan Ganda: 1. C, 2. B (Skor per nomor: 20 poin)
+II. Esai: 1. أَنَا (Saya), أَنْتَ (Kamu L), هُوَ (Dia L) (Skor: 40 poin)
+Total Skor Maksimal = 100 Poin.`}
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* SIGNATURE BLOCK FOR OFFICIAL PRINT */}
         <div className="pt-10 flex justify-between items-end text-xs font-medium text-slate-800 text-center print:break-inside-avoid" style={{ pageBreakInside: 'avoid', breakInside: 'avoid' }}>
           <div className="space-y-12">
