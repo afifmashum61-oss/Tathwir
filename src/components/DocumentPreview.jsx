@@ -413,68 +413,61 @@ export default function DocumentPreview({ docData, onEdit, onBack }) {
           </div>
         </div>
 
-        {/* H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI */}
+        {/* H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI (8 PERTEMUAN LENGKAP) */}
         <div className="space-y-4 pt-2">
-          <div className="bg-emerald-100/80 text-emerald-950 font-black text-xs px-3 py-1.5 rounded-md uppercase">
-            H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI
+          <div className="bg-emerald-100/80 text-emerald-950 font-black text-xs px-3 py-1.5 rounded-md uppercase flex justify-between items-center">
+            <span>H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI</span>
+            <span className="bg-emerald-700 text-white px-2 py-0.5 rounded text-[10px]">
+              {((docData.pertemuanList && docData.pertemuanList.length) || 8)} Pertemuan Lengkap
+            </span>
           </div>
 
-          <div className="space-y-4 text-xs">
-            <div className="border border-emerald-300 rounded-xl p-4 bg-emerald-50/20 space-y-3">
-              <div className="bg-emerald-700 text-white px-3 py-1 rounded font-black text-xs inline-block uppercase">
-                PERTEMUAN 1 (2 JP : 80 MENIT)
-              </div>
+          <div className="space-y-6 text-xs">
+            {((docData.pertemuanList && docData.pertemuanList.length > 0) 
+              ? docData.pertemuanList 
+              : (generateAIContent(docData.matpel, docData.bab || docData.title, docData.jenjang).pertemuanList || [])
+            ).map((p, idx) => (
+              <div key={idx} className="border border-emerald-300 rounded-xl p-4 bg-emerald-50/20 space-y-3 print:break-inside-avoid" style={{ pageBreakInside: 'avoid', breakInside: 'avoid' }}>
+                <div className="flex justify-between items-center bg-emerald-700 text-white px-3 py-1.5 rounded font-black text-xs uppercase">
+                  <span>PERTEMUAN {p.no || (idx + 1)} ({p.jp || '2 JP : 80 MENIT'})</span>
+                  <span className="bg-emerald-900/60 px-2 py-0.5 rounded text-[10px]">{p.topikCinta || 'Kurikulum Berbasis Cinta'}</span>
+                </div>
 
-              <div className="text-xs font-bold text-slate-800 space-y-0.5">
-                <p>Topik Panca Cinta: Cinta Diri dan Sesama Manusia, Cinta Allah Swt. dan Rasul-Nya</p>
-                <p>Pembahasan: Mufrodat (Kata Sapa, Kata Tanya, dan Kata Ganti)</p>
-              </div>
+                <div className="text-xs font-bold text-slate-800 space-y-0.5 border-b border-emerald-200/80 pb-2">
+                  <p className="text-teal-900"><span className="font-extrabold text-slate-900">Pembahasan & Subtopik:</span> {p.pembahasan || docData.bab}</p>
+                </div>
 
-              {/* KEGIATAN PENDAHULUAN */}
-              <div className="space-y-2 pt-1">
-                <span className="bg-amber-300 text-slate-900 font-bold px-2 py-0.5 rounded text-[11px] uppercase">
-                  KEGIATAN PENDAHULUAN (15 MENIT)
-                </span>
-                <ul className="list-circle pl-6 space-y-1.5 text-slate-800 leading-relaxed">
-                  <li><span className="font-bold">Salam Pembuka Cinta:</span> Guru membuka pelajaran dengan salam, senyum, dan menanyakan kabar dengan penuh kehangatan.</li>
-                  <li><span className="font-bold">Doa dan Tadarus:</span> Membaca doa sebelum belajar dan surat pendek sebagai wujud cinta kepada Allah Swt.</li>
-                  <li><span className="font-bold">Apersepsi Penuh Makna:</span> Guru bertanya, "Anak-anak, mengapa kita perlu berkenalan? Karena dengan saling mengenal, kita bisa saling menyayangi sebagai ciptaan Allah."</li>
-                  <li><span className="font-bold">Penyampaian Tujuan:</span> Guru menyampaikan tujuan pembelajaran hari ini, yaitu mengenal kata-kata indah dalam bahasa Arab untuk menyapa dan mengenal teman baru.</li>
-                </ul>
-              </div>
+                {/* KEGIATAN PENDAHULUAN */}
+                <div className="space-y-1.5 pt-1">
+                  <span className="bg-amber-300 text-slate-900 font-bold px-2 py-0.5 rounded text-[10px] uppercase">
+                    KEGIATAN PENDAHULUAN (15 MENIT)
+                  </span>
+                  <p className="text-slate-800 whitespace-pre-line leading-relaxed text-[11px] pl-2">
+                    {p.pendahuluan || docData.pendahuluan || '1. Salam Pembuka Cinta & Doa\n2. Apersepsi & Penyampaian Tujuan'}
+                  </p>
+                </div>
 
-              {/* KEGIATAN INTI */}
-              <div className="space-y-2 pt-2">
-                <span className="bg-amber-300 text-slate-900 font-bold px-2 py-0.5 rounded text-[11px] uppercase">
-                  KEGIATAN INTI (50 MENIT)
-                </span>
-                <ul className="list-circle pl-6 space-y-2 text-slate-800 leading-relaxed">
-                  <li><span className="font-bold">Mindful Listening:</span> Guru melafalkan mufrodat sapaan (التحيات), kata tanya (الاستفهام), dan kata ganti (الضمائر) dari buku dengan intonasi yang jelas. Peserta didik mendengarkan dengan saksama.</li>
-                  <li><span className="font-bold">Joyful Repetition:</span> Peserta didik menirukan pelafalan guru secara klasikal, per baris, lalu individu dengan semangat. Guru bisa menggunakan gerakan tangan untuk beberapa kata.</li>
-                  <li><span className="font-bold">Meaningful Connection:</span> Guru menjelaskan makna setiap kata dan kapan penggunaannya, <span className="font-bold">menekankan</span> bahwa sapaan adalah doa dan wujud cinta.</li>
-                  <li>
-                    <span className="font-bold">Pembelajaran Berdiferensiasi:</span>
-                    <ul className="list-square pl-6 mt-1 space-y-1.5">
-                      <li><span className="font-bold">Proses:</span> Peserta didik dibagi menjadi kelompok kecil. Guru memberikan kartu mufrodat (Diferensiasi Konten: beberapa kartu ada gambar, beberapa hanya tulisan). Mereka bermain tebak kata atau mencocokkan kata dengan artinya.</li>
-                      <li><span className="font-bold">Produk:</span> Setiap kelompok mencoba membuat satu kalimat sapaan sederhana di papan tulis.</li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+                {/* KEGIATAN INTI */}
+                <div className="space-y-1.5 pt-2">
+                  <span className="bg-amber-300 text-slate-900 font-bold px-2 py-0.5 rounded text-[10px] uppercase">
+                    KEGIATAN INTI (50 MENIT) - MINDFUL, MEANINGFUL, JOYFUL
+                  </span>
+                  <p className="text-slate-800 whitespace-pre-line leading-relaxed text-[11px] pl-2">
+                    {p.inti || docData.inti || '1. Mindful Listening & Observation\n2. Joyful Discussion & Collaboration\n3. Meaningful Reflection'}
+                  </p>
+                </div>
 
-              {/* KEGIATAN PENUTUP */}
-              <div className="space-y-2 pt-2">
-                <span className="bg-amber-300 text-slate-900 font-bold px-2 py-0.5 rounded text-[11px] uppercase">
-                  KEGIATAN PENUTUP (15 MENIT)
-                </span>
-                <ul className="list-circle pl-6 space-y-1.5 text-slate-800 leading-relaxed">
-                  <li><span className="font-bold">Refleksi:</span> Guru mengajak peserta didik merenung, "Kata sapaan cinta apa yang paling kalian sukai hari ini dan mengapa?"</li>
-                  <li><span className="font-bold">Rangkuman:</span> Guru bersama peserta didik menyimpulkan mufrodat yang telah dipelajari.</li>
-                  <li><span className="font-bold">Tindak Lanjut:</span> Menugaskan peserta didik untuk menyapa anggota keluarga di rumah menggunakan salah satu sapaan yang dipelajari.</li>
-                  <li><span className="font-bold">Penutup:</span> Salam dan doa.</li>
-                </ul>
+                {/* KEGIATAN PENUTUP */}
+                <div className="space-y-1.5 pt-2">
+                  <span className="bg-amber-300 text-slate-900 font-bold px-2 py-0.5 rounded text-[10px] uppercase">
+                    KEGIATAN PENUTUP (15 MENIT)
+                  </span>
+                  <p className="text-slate-800 whitespace-pre-line leading-relaxed text-[11px] pl-2">
+                    {p.penutup || docData.penutup || '1. Refleksi Cinta & Kesimpulan\n2. Doa dan Salam Penutup'}
+                  </p>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
 

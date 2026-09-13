@@ -1,4 +1,4 @@
-// Export utilities for PDF Print and Word Document Export matching official Kemenag layout
+import { generateAIContent } from './aiGenerator';
 
 export const formatNamaDanGelar = (str) => {
   if (!str) return '...........................................';
@@ -311,45 +311,30 @@ export const exportToWordDoc = (docData) => {
         <li>Merekam suara atau video peserta didik saat praktik dialog untuk portofolio digital.</li>
       </ul>
 
-      <!-- H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI -->
+      <!-- H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI (8 PERTEMUAN LENGKAP) -->
       <div class="section-header">H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI</div>
-      <div style="border: 1px solid #6ee7b7; background-color: #ecfdf5; padding: 12px; border-radius: 6px; margin-top: 10px;">
-        <div class="sub-badge">PERTEMUAN 1 (2 JP : 80 MENIT)</div>
-        <p style="font-size: 10pt; font-weight: bold; margin: 4px 0;">
-          Topik Panca Cinta: Cinta Diri dan Sesama Manusia, Cinta Allah Swt. dan Rasul-Nya<br/>
-          Pembahasan: Mufrodat (Kata Sapa, Kata Tanya, dan Kata Ganti)
-        </p>
+      
+      ${((docData.pertemuanList && docData.pertemuanList.length > 0)
+        ? docData.pertemuanList
+        : (generateAIContent(docData.matpel, docData.bab || docData.title, docData.jenjang).pertemuanList || [])
+      ).map((p, idx) => `
+        <div style="border: 1px solid #6ee7b7; background-color: #ecfdf5; padding: 12px; border-radius: 6px; margin-top: 10px; margin-bottom: 12px;">
+          <div class="sub-badge">PERTEMUAN ${p.no || (idx + 1)} (${p.jp || '2 JP : 80 MENIT'})</div>
+          <p style="font-size: 10pt; font-weight: bold; margin: 4px 0; color: #064e3b;">
+            Topik Cinta: ${p.topikCinta || 'Kurikulum Berbasis Cinta'}<br/>
+            Pembahasan: ${p.pembahasan || docData.bab}
+          </p>
 
-        <div class="sub-badge-amber">KEGIATAN PENDAHULUAN (15 MENIT)</div>
-        <ul>
-          <li><b>Salam Pembuka Cinta:</b> Guru membuka pelajaran dengan salam, senyum, dan menanyakan kabar dengan penuh kehangatan.</li>
-          <li><b>Doa dan Tadarus:</b> Membaca doa sebelum belajar dan surat pendek sebagai wujud cinta kepada Allah Swt.</li>
-          <li><b>Apersepsi Penuh Makna:</b> Guru bertanya, "Anak-anak, mengapa kita perlu berkenalan? Karena dengan saling mengenal, kita bisa saling menyayangi sebagai ciptaan Allah."</li>
-          <li><b>Penyampaian Tujuan:</b> Guru menyampaikan tujuan pembelajaran hari ini, yaitu mengenal kata-kata indah dalam bahasa Arab untuk menyapa dan mengenal teman baru.</li>
-        </ul>
+          <div class="sub-badge-amber">KEGIATAN PENDAHULUAN (15 MENIT)</div>
+          <p style="font-size: 10pt; white-space: pre-line; margin: 4px 0;">${p.pendahuluan || docData.pendahuluan || '1. Salam Pembuka Cinta & Doa\n2. Apersepsi & Penyampaian Tujuan'}</p>
 
-        <div class="sub-badge-amber">KEGIATAN INTI (50 MENIT)</div>
-        <ul>
-          <li><b>Mindful Listening:</b> Guru melafalkan mufrodat sapaan (التحيات), kata tanya (الاستفهام), dan kata ganti (الضمائر) dari buku dengan intonasi yang jelas. Peserta didik mendengarkan dengan saksama.</li>
-          <li><b>Joyful Repetition:</b> Peserta didik menirukan pelafalan guru secara klasikal, per baris, lalu individu dengan semangat. Guru bisa menggunakan gerakan tangan untuk beberapa kata.</li>
-          <li><b>Meaningful Connection:</b> Guru menjelaskan makna setiap kata dan kapan penggunaannya, <b>menekankan</b> bahwa sapaan adalah doa dan wujud cinta.</li>
-          <li>
-            <b>Pembelajaran Berdiferensiasi:</b>
-            <ul>
-              <li><b>Proses:</b> Peserta didik dibagi menjadi kelompok kecil. Guru memberikan kartu mufrodat (Diferensiasi Konten: beberapa kartu ada gambar, beberapa hanya tulisan). Mereka bermain tebak kata atau mencocokkan kata dengan artinya.</li>
-              <li><b>Produk:</b> Setiap kelompok mencoba membuat satu kalimat sapaan sederhana di papan tulis.</li>
-            </ul>
-          </li>
-        </ul>
+          <div class="sub-badge-amber">KEGIATAN INTI (50 MENIT) - MINDFUL, MEANINGFUL, JOYFUL</div>
+          <p style="font-size: 10pt; white-space: pre-line; margin: 4px 0;">${p.inti || docData.inti || '1. Mindful Listening & Observation\n2. Joyful Discussion & Collaboration\n3. Meaningful Reflection'}</p>
 
-        <div class="sub-badge-amber">KEGIATAN PENUTUP (15 MENIT)</div>
-        <ul>
-          <li><b>Refleksi:</b> Guru mengajak peserta didik merenung, "Kata sapaan cinta apa yang paling kalian sukai hari ini dan mengapa?"</li>
-          <li><b>Rangkuman:</b> Guru bersama peserta didik menyimpulkan mufrodat yang telah dipelajari.</li>
-          <li><b>Tindak Lanjut:</b> Menugaskan peserta didik untuk menyapa anggota keluarga di rumah menggunakan salah satu sapaan yang dipelajari.</li>
-          <li><b>Penutup:</b> Salam dan doa.</li>
-        </ul>
-      </div>
+          <div class="sub-badge-amber">KEGIATAN PENUTUP (15 MENIT)</div>
+          <p style="font-size: 10pt; white-space: pre-line; margin: 4px 0;">${p.penutup || docData.penutup || '1. Refleksi Cinta & Kesimpulan\n2. Doa dan Salam Penutup'}</p>
+        </div>
+      `).join('')}
 
       <!-- I. ASESMEN PEMBELAJARAN -->
       <div class="section-header">I. ASESMEN PEMBELAJARAN</div>

@@ -101,6 +101,81 @@ export const generateAIContent = (subject, topic, level, model = 'Deep Learning 
     asesmenFormatif: `Observasi sikap keaktifan, unjuk kerja kelompok, dan latihan tertulis ${cleanTopic}.`,
     asesmenSumatif: `Tes Tulis Pilihan Ganda & Uraian ${cleanTopic}, serta Tes Praktik Unjuk Kerja KBC.`,
 
+    pertemuanList: [
+      {
+        no: 1,
+        jp: '2 JP (80 Menit)',
+        pembahasan: `Pengenalan Kosakata (Mufrodat/Istilah Utama) & Konsep Dasar ${cleanTopic}`,
+        topikCinta: 'Cinta Diri & Sesama Manusia, Cinta Allah SWT dan Rasul-Nya',
+        pendahuluan: `1. Salam Pembuka Cinta: Guru menyapa peserta didik dengan ramah, tersenyum, dan menanyakan kabar.\n2. Doa & Tadarus: Membaca doa sebelum belajar dan surat pendek sebagai wujud cinta kepada Allah SWT.\n3. Apersepsi: Guru mengaitkan pentingnya mempelajari ${topicIndo} dalam kehidupan sehari-hari.\n4. Penyampaian Tujuan: Guru menyampaikan target pembelajaran Pertemuan 1.`,
+        inti: `1. Mindful Listening: Guru menjelaskan/melafalkan kosakata & istilah utama ${cleanTopic} dengan intonasi jelas.\n2. Joyful Repetition: Peserta didik menirukan pelafalan dan membaca frasa utama secara antusias.\n3. Meaningful Connection: Guru menekankan bahwa mempelajari ${topicIndo} adalah bentuk menebar kebaikan.\n4. Pembelajaran Berdiferensiasi: Bermain kartu kata/gambar dalam kelompok kecil.`,
+        penutup: `1. Refleksi Cinta: Guru bertanya tentang kata/konsep yang paling disukai hari ini.\n2. Rangkuman: Guru bersama siswa menyimpulkan materi Pertemuan 1.\n3. Tindak Lanjut: Tugas pembiasaan ringan di rumah.\n4. Penutup: Doa dan salam.`
+      },
+      {
+        no: 2,
+        jp: '2 JP (80 Menit)',
+        pembahasan: `Penguatan Kosakata & Istilah Penting Pembahasan ${cleanTopic}`,
+        topikCinta: 'Cinta Ilmu Pengetahuan & Kebenaran',
+        pendahuluan: `1. Salam & Senyum Cinta: Menyapa dan menanyakan kesiapan emosi siswa.\n2. Review Singkat: Mengulas kosakata Pertemuan 1 dengan permainan tebak cepat.\n3. Apersepsi: Mengapa penguasaan istilah ${topicIndo} itu penting.\n4. Menyampaikan tujuan Pertemuan 2.`,
+        inti: `1. Mindful Reading: Membaca frasa dan kalimat sederhana terkait ${cleanTopic}.\n2. Joyful Card Game: Peserta didik mencocokkan frasa dengan artinya secara berpasangan.\n3. Meaningful Insight: Mendiskusikan makna kebaikan di balik materi ${topicIndo}.\n4. Pembelajaran Berdiferensiasi: Guru mendampingi kelompok yang membutuhkan bimbingan ekstra.`,
+        penutup: `1. Refleksi: Peserta didik menyampaikan pesan kebaikan dari materi.\n2. Kesimpulan bersama.\n3. Penutup: Doa dan salam.`
+      },
+      {
+        no: 3,
+        jp: '2 JP (80 Menit)',
+        pembahasan: `Memahami Teks & Bahan Bacaan Deskriptif (Nushus) ${cleanTopic}`,
+        topikCinta: 'Cinta Sesama Manusia & Empati',
+        pendahuluan: `1. Salam & Kehangatan: Membuka kelas dengan senyum dan keceriaan.\n2. Doa bersama.\n3. Apersepsi: Mengamati gambar/slide media tentang ${topicIndo}.\n4. Penyampaian tujuan membaca teks Pertemuan 3.`,
+        inti: `1. Mindful Reading: Peserta didik membaca teks deskriptif ${cleanTopic} secara tenang.\n2. Meaningful Discussion: Mengidentifikasi fakta & isi teks ${topicIndo} secara berkelompok.\n3. Joyful Quiz: Kuis interaktif kelompok menjawab pertanyaan isi teks.\n4. Pembelajaran Berdiferensiasi: Menyediakan teks berfasilitas gambar/glosarium.`,
+        penutup: `1. Refleksi pembelajaran teks.\n2. Penguatan dari guru.\n3. Penutup: Doa dan salam.`
+      },
+      {
+        no: 4,
+        jp: '2 JP (80 Menit)',
+        pembahasan: `Analisis Tata Bahasa / Kaidah Struktur Kalimat ${cleanTopic}`,
+        topikCinta: 'Cinta Ilmu & Penalaran Kritis',
+        pendahuluan: `1. Salam Pembuka Cinta & Senyum.\n2. Doa sebelum belajar.\n3. Apersepsi: Menunjukkan pola struktur kalimat dalam teks Pertemuan 3.\n4. Penyampaian tujuan tata bahasa.`,
+        inti: `1. Mindful Analysis: Guru menjelaskan pola tata bahasa/struktur kalimat ${cleanTopic}.\n2. Meaningful Application: Mengubah dan menyusun kalimat sederhana sesuai aturan kaidah.\n3. Joyful Practice: Papan tulis bersama / papan tempel kalimat.\n4. Pembelajaran Berdiferensiasi: Latihan bertingkat (dasar, menengah, mahir).`,
+        penutup: `1. Refleksi kemudahan memahami rumus/pola.\n2. Kesimpulan rumus kaidah.\n3. Penutup: Doa dan salam.`
+      },
+      {
+        no: 5,
+        jp: '2 JP (80 Menit)',
+        pembahasan: `Praktik Dialog / Unjuk Kerja Komunikasi Berbasis Empati`,
+        topikCinta: 'Cinta Sesama Manusia & Kesantunan',
+        pendahuluan: `1. Salam & Pengondisian emosi siswa.\n2. Doa bersama.\n3. Apersepsi: Memperagakan contoh dialog perkenalan/diskusi ${topicIndo}.\n4. Menyampaikan target praktik berpasangan.`,
+        inti: `1. Mindful Practice: Peserta didik menyusun dialog berpasangan tentang ${cleanTopic}.\n2. Joyful Role Playing: Mempraktikkan dialog di depan kelas dengan intonasi ramah dan tersenyum.\n3. Meaningful Peer Feedback: Saling memberikan apresiasi positif kepada teman.\n4. Pembelajaran Berdiferensiasi: Menampilkan dialog lisan atau tulisan.`,
+        penutup: `1. Refleksi rasa percaya diri tampil di depan kelas.\n2. Apresiasi dari guru.\n3. Penutup: Doa dan salam.`
+      },
+      {
+        no: 6,
+        jp: '2 JP (80 Menit)',
+        pembahasan: `Pengerjaan LKPD Kelompok & Kolaborasi Cinta ${cleanTopic}`,
+        topikCinta: 'Gotong Royong & Moderasi Beragama',
+        pendahuluan: `1. Salam Pembuka & Doa bersama.\n2. Apersepsi: Menjelaskan tugas kolaboratif pada Lembar Kerja Peserta Didik (LKPD).\n3. Pembagian kelompok kerja.`,
+        inti: `1. Mindful Collaboration: Kelompok mendiskusikan tugas LKPD ${cleanTopic} secara gotong royong.\n2. Meaningful Problem Solving: Mengisi lembar refleksi dan studi kasus kebaikan.\n3. Joyful Presentation: Setiap kelompok memajang/mempresentasikan hasil LKPD.\n4. Pembelajaran Berdiferensiasi: Pembagian peran kelompok sesuai minat siswa.`,
+        penutup: `1. Refleksi pentingnya kerja sama & empati.\n2. Pengumpulan LKPD.\n3. Penutup: Doa dan salam.`
+      },
+      {
+        no: 7,
+        jp: '2 JP (80 Menit)',
+        pembahasan: `Penyusunan Produk Paragraf / Karya Mandiri Peserta Didik`,
+        topikCinta: 'Kreativitas & Cinta Diri',
+        pendahuluan: `1. Salam, Doa & Apersepsi penyusunan karya mandiri.\n2. Penyampaian kriteria rubrik karya.`,
+        inti: `1. Mindful Writing/Creating: Peserta didik menyusun karya/paragraf mandiri tentang ${topicIndo}.\n2. Meaningful Reflection: Memasukkan nilai-nilai kasih sayang dan empati dalam karya.\n3. Joyful Exhibition: Menampilkan karya di mading/papan karya kelas.\n4. Pembelajaran Berdiferensiasi: Pilihan produk tulisan, gambar bergambar, atau video rekaman.`,
+        penutup: `1. Refleksi kebanggaan terhadap karya sendiri.\n2. Ulasan guru.\n3. Penutup: Doa dan salam.`
+      },
+      {
+        no: 8,
+        jp: '2 JP (80 Menit)',
+        pembahasan: `Asesmen Sumatif Bab ${cleanTopic} & Evaluasi Capaian Pembelajaran KBC`,
+        topikCinta: 'Kejujuran, Tanggung Jawab & Rasa Syukur',
+        pendahuluan: `1. Salam Pembuka & Pengondisian ruang tes secara tenang dan nyaman.\n2. Doa kejujuran & ketenangan sebelum tes.\n3. Penjelasan petunjuk pengerjaan Asesmen Sumatif.`,
+        inti: `1. Mindful Testing: Peserta didik mengerjakan Naskah Soal Asesmen Sumatif (Pilihan Ganda & Esai) dengan jujur dan tenang.\n2. Meaningful Evaluation: Mengumpulkan hasil tes dan refleksi capaian Bab ${cleanTopic}.\n3. Asesmen Unjuk Kerja/Portofolio KBC.`,
+        penutup: `1. Guru memberikan apresiasi atas perjuangan belajar seluruh siswa selama 8 pertemuan.\n2. Refleksi penutupan Bab ${cleanTopic}.\n3. Doa syukur dan salam penutup.`
+      }
+    ],
+
     soalSumatif: `I. PILIHAN GANDA (Pilihlah jawaban yang paling tepat):
 1. Pengertian atau konsep utama yang paling tepat mengenai ${topicIndo} adalah...
    a. Mengabaikan konsep dasar  b. Pemahaman fakta & kebaikan materi  c. Tidak memiliki manfaat  d. Semata-mata hafalan
