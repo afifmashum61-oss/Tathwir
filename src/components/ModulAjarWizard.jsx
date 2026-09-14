@@ -207,29 +207,41 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
         </div>
 
         {/* Steps Progress Indicator */}
-        <div className="grid grid-cols-5 gap-2 pt-2 border-t border-slate-100">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 pt-2 border-t border-slate-100">
           {[
-            { num: 1, label: 'A. Identitas & Materi' },
-            { num: 2, label: 'CP & Tujuan Cinta' },
-            { num: 3, label: '7 Pilar Cinta Kemenag' },
-            { num: 4, label: 'Sintaks Kasih Sayang' },
-            { num: 5, label: 'Asesmen & LKPD' }
-          ].map(s => (
-            <button
-              key={s.num}
-              onClick={() => setCurrentStep(s.num)}
-              className={`p-2.5 rounded-xl text-left transition-all ${
-                currentStep === s.num
-                  ? 'bg-teal-600 text-white font-bold shadow-sm'
-                  : currentStep > s.num
-                  ? 'bg-teal-50 text-teal-800 font-semibold'
-                  : 'bg-slate-50 text-slate-400 font-medium'
-              }`}
-            >
-              <div className="text-[10px] opacity-80 uppercase tracking-wider">Langkah {s.num}</div>
-              <div className="text-xs truncate">{s.label}</div>
-            </button>
-          ))}
+            { num: 1, label: 'Identitas & Materi', icon: User },
+            { num: 2, label: 'CP & Tujuan Cinta', icon: BookOpen },
+            { num: 3, label: '7 Pilar Cinta', icon: Heart },
+            { num: 4, label: 'Sintaks KBC', icon: Sparkles },
+            { num: 5, label: 'Asesmen & LKPD', icon: CheckSquare }
+          ].map(s => {
+            const StepIcon = s.icon;
+            const isActive = currentStep === s.num;
+            const isCompleted = currentStep > s.num;
+            return (
+              <button
+                key={s.num}
+                onClick={() => setCurrentStep(s.num)}
+                className={`p-2.5 rounded-xl text-left transition-all flex items-center gap-2.5 ${
+                  isActive
+                    ? 'bg-teal-600 text-white font-bold shadow-md shadow-teal-600/20'
+                    : isCompleted
+                    ? 'bg-teal-50 text-teal-900 font-semibold border border-teal-200 hover:bg-teal-100'
+                    : 'bg-slate-50 text-slate-500 font-medium hover:bg-slate-100 border border-slate-200/60'
+                }`}
+              >
+                <div className={`p-1.5 rounded-lg flex items-center justify-center shrink-0 ${
+                  isActive ? 'bg-white/20 text-white' : isCompleted ? 'bg-teal-100 text-teal-700' : 'bg-slate-200/60 text-slate-500'
+                }`}>
+                  <StepIcon className="w-4 h-4" />
+                </div>
+                <div className="overflow-hidden min-w-0">
+                  <div className="text-[10px] opacity-80 uppercase tracking-wider">Langkah {s.num}</div>
+                  <div className="text-xs truncate">{s.label}</div>
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
 

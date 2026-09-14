@@ -80,6 +80,30 @@ export default function Navbar({ activeTab, setActiveTab, onNewDocument }) {
         </div>
       </div>
 
+      {/* HORIZONTAL TAB BUTTONS NAVBAR WITH ICONS */}
+      <div className="bg-slate-50/90 border-t border-slate-200/80 px-4 sm:px-6 lg:px-8 py-2 overflow-x-auto scrollbar-none">
+        <div className="max-w-7xl mx-auto flex items-center gap-1.5 min-w-max">
+          {menuItems.map((item) => {
+            const IconComp = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleSelect(item.id)}
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  isActive
+                    ? 'bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md shadow-teal-600/20'
+                    : 'bg-white hover:bg-teal-50 text-slate-700 hover:text-teal-700 border border-slate-200/80 hover:border-teal-200'
+                }`}
+              >
+                <IconComp className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-teal-600'}`} />
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Hamburger Dropdown Menu Overlay Panel */}
       {isOpen && (
         <div className="absolute top-full right-4 sm:right-6 lg:right-8 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 p-3 mt-2 space-y-1 animate-in fade-in slide-in-from-top-2 z-50">
