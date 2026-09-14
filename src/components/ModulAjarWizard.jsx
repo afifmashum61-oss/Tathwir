@@ -505,7 +505,7 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">Capaian Pembelajaran (CP)</label>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Capaian Pembelajaran (CP Utama)</label>
                 <textarea
                   rows={3}
                   value={formData.cp}
@@ -513,6 +513,21 @@ export default function ModulAjarWizard({ initialData, onSave, onPreview }) {
                   className="w-full p-3 text-sm rounded-xl border border-slate-200 focus:border-teal-500 outline-none"
                   placeholder="Tuliskan Capaian Pembelajaran yang diintegrasikan dengan nilai KBC..."
                 />
+              </div>
+
+              <div className="bg-teal-50/50 p-4 rounded-2xl border border-teal-200 space-y-1">
+                <label className="block text-xs font-bold text-teal-900 mb-1 flex justify-between items-center">
+                  <span>Peta Konsep & Kaidah Elemen CP (Isi Kotak Tabel CP)</span>
+                  <span className="text-[10px] text-teal-700 font-semibold bg-teal-100 px-2 py-0.5 rounded">Tabel Elemen CP</span>
+                </label>
+                <textarea
+                  rows={2}
+                  value={formData.petaKonsep || ''}
+                  onChange={(e) => handleChange('petaKonsep', e.target.value)}
+                  className="w-full p-3 text-xs rounded-xl border border-teal-300 bg-white focus:border-teal-500 outline-none font-bold text-slate-800"
+                  placeholder="misal: 1. Ungkapan Sapaan (At-Tahiyyat) -> 2. Kata Ganti (Dhamir) -> 3. Kata Tanya -> 4. Kaidah Mubtada' & Khabar"
+                />
+                <p className="text-[11px] text-teal-700 font-medium">💡 Isian ini otomatis ditampilkan di dalam kotak kecil pada Tabel Capaian Pembelajaran per Elemen (Menyimak, Membaca, Menulis).</p>
               </div>
 
               <div>
