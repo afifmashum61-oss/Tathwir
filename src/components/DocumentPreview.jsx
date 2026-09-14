@@ -1,6 +1,6 @@
 import React from 'react';
 import { Printer, Download, ArrowLeft, Edit3, Heart } from 'lucide-react';
-import { triggerPrintDocument, exportToWordDoc, formatNamaDanGelar, formatKepalaHeader } from '../utils/exportUtils';
+import { triggerPrintDocument, exportToWordDoc, formatNamaDanGelar, formatKepalaHeader, getCPTableData } from '../utils/exportUtils';
 import { generateAIContent } from '../utils/aiGenerator';
 
 const cleanMarkdownText = (str) => {
@@ -24,8 +24,6 @@ export default function DocumentPreview({ docData, onEdit, onBack }) {
   const namaKepalaFormatted = formatNamaDanGelar(docData.namaKepala);
   const namaGuruFormatted = formatNamaDanGelar(docData.namaGuru);
   const kepalaHeader = formatKepalaHeader(docData.namaSekolah);
-
-  const arabGrammarText = "الجملةُ الاسميةُ، العددُ، التصريفُ اللغويُّ، فعلُ الأمرِ، الجملةُ الفعليةُ، أن - لن - لـ، لا الناهية / لم (+ الفعل المضارع)، المصدر الصريح، الفعل الماضي، كان واسمها وخبرها، الفعل المزيد، اسم الموصول، اسم التفضيل.";
 
   return (
     <div className="max-w-4xl mx-auto space-y-6 pb-16">
@@ -234,50 +232,30 @@ export default function DocumentPreview({ docData, onEdit, onBack }) {
             A. CAPAIAN PEMBELAJARAN (CP)
           </div>
           <p className="text-xs text-slate-800 leading-relaxed pl-1">
-            {docData.cp || 'Pada akhir fase D, peserta didik mempunyai kemampuan memahami informasi tersirat dan tersurat dari berbagai jenis teks lisan dan teks visual atau multimodal, membangun interaksi, dan mengomunikasikan ide yang terstruktur baik secara tertulis maupun lisan.'}
+            {docData.cp || `Pada akhir ${docData.fase || 'Fase D'}, peserta didik mempunyai kemampuan memahami informasi tersirat dan tersurat dari berbagai jenis teks lisan dan teks visual atau multimodal tentang ${docData.bab || docData.title} dalam mata pelajaran ${docData.matpel || 'Bahasa Arab'} berbasis Kurikulum Berbasis Cinta (KBC).`}
           </p>
 
           <table className="w-full text-xs border-collapse border border-slate-300 mt-2">
             <thead>
               <tr className="bg-emerald-100 text-emerald-950 font-bold border-b border-slate-300">
                 <th className="p-2 border-r border-slate-300 text-center w-1/4">Elemen</th>
-                <th className="p-2 text-center">Capaian Pembelajaran</th>
+                <th className="p-2 text-center">Capaian Pembelajaran Per Elemen</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-slate-300">
-                <td className="p-2.5 font-bold border-r border-slate-300 bg-slate-50 align-top">
-                  Menyimak - Berbicara
-                </td>
-                <td className="p-2.5 text-slate-800 leading-relaxed">
-                  Memahami informasi yang diterima secara tersirat dan tersurat serta interaksi tentang tema madrasah, rumah, hobi, pekerjaan, kesehatan, hari-hari besar Islam, pariwisata, alam, dan lingkungan dengan susunan gramatikal:
-                  <div className="dir-rtl text-right font-mono text-xs mt-1.5 p-2 bg-slate-50 rounded border border-slate-200 text-teal-950 font-bold">
-                    {arabGrammarText}
-                  </div>
-                </td>
-              </tr>
-              <tr className="border-b border-slate-300">
-                <td className="p-2.5 font-bold border-r border-slate-300 bg-slate-50 align-top">
-                  Membaca - Memirsa
-                </td>
-                <td className="p-2.5 text-slate-800 leading-relaxed">
-                  Memahami informasi secara tersurat dan tersirat berbagai jenis teks visual atau multimodal tentang madrasah, rumah, hobi, pekerjaan, kesehatan, hari-hari besar Islam, pariwisata, alam, dan lingkungan dengan susunan gramatikal:
-                  <div className="dir-rtl text-right font-mono text-xs mt-1.5 p-2 bg-slate-50 rounded border border-slate-200 text-teal-950 font-bold">
-                    {arabGrammarText}
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td className="p-2.5 font-bold border-r border-slate-300 bg-slate-50 align-top">
-                  Menulis - Mempresentasikannya
-                </td>
-                <td className="p-2.5 text-slate-800 leading-relaxed">
-                  Mengomunikasikan ide baik secara tertulis maupun lisan melalui paragraf sederhana pada berbagai jenis teks dan terstruktur tentang madrasah, rumah, hobi, pekerjaan, kesehatan, hari-hari besar Islam, pariwisata, alam, dan lingkungan dengan susunan gramatikal:
-                  <div className="dir-rtl text-right font-mono text-xs mt-1.5 p-2 bg-slate-50 rounded border border-slate-200 text-teal-950 font-bold">
-                    {arabGrammarText}
-                  </div>
-                </td>
-              </tr>
+              {getCPTableData(docData).map((row, idx) => (
+                <tr key={idx} className="border-b border-slate-300">
+                  <td className="p-2.5 font-bold border-r border-slate-300 bg-slate-50 align-top">
+                    {row.elemen}
+                  </td>
+                  <td className="p-2.5 text-slate-800 leading-relaxed">
+                    {row.cpText}
+                    <div className={`mt-1.5 p-2 bg-slate-50 rounded border border-slate-200 text-teal-950 font-bold text-xs ${row.isArabic ? 'dir-rtl text-right font-mono' : 'text-left font-sans'}`}>
+                      {row.subBox}
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

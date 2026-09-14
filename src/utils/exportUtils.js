@@ -43,6 +43,70 @@ export const formatKepalaHeader = (namaSekolah) => {
   return `Kepala ${clean}`;
 };
 
+export const getCPTableData = (docData) => {
+  if (!docData) return [];
+
+  const matpel = docData.matpel || 'Bahasa Arab';
+  let rawTopic = docData.bab || docData.title || 'al-Ta\'aruf (Perkenalan)';
+  let cleanTopic = rawTopic.replace(/^BAB\s+[0-9IVXLCDM]+\s*[:\-]?\s*/i, '').trim();
+  if (!cleanTopic) cleanTopic = rawTopic;
+
+  const isArabic = matpel.toUpperCase().includes('ARAB');
+  
+  // Custom Kaidah / Sub-topik text from user input or dynamic topic
+  const kaidahSubtopik = (docData.petaKonsep && docData.petaKonsep.trim())
+    ? docData.petaKonsep
+    : (docData.materiUraian && docData.materiUraian.trim())
+    ? docData.materiUraian.slice(0, 200) + '...'
+    : isArabic
+    ? `Pembahasan ${cleanTopic}: Ungkapan Sapaan (At-Tahiyyat), Kata Ganti (Dhamir), Kata Tanya (Istifham), Profesi & Kaidah Mubtada' + Khabar`
+    : `Peta Konsep & Pokok Bahasan Utama: Pengenalan Konsep ${cleanTopic}, Analisis Kasus, dan Penerapan Praktis`;
+
+  if (isArabic) {
+    return [
+      {
+        elemen: 'Menyimak - Berbicara (Istima\' & Kalam)',
+        cpText: `Memahami informasi yang diterima secara tersirat dan tersurat serta mampu membangun interaksi lisan secara santun tentang tema ${cleanTopic} dalam mata pelajaran ${matpel} berbasis Kurikulum Berbasis Cinta (KBC) dengan susunan gramatikal/kaidah:`,
+        subBox: kaidahSubtopik,
+        isArabic: true
+      },
+      {
+        elemen: 'Membaca - Memirsa (Qira\'ah & Qira\'at)',
+        cpText: `Memahami informasi secara tersurat dan tersirat dari berbagai jenis teks deskriptif visual atau multimodal tentang tema ${cleanTopic} dalam mata pelajaran ${matpel} dengan menerapkan kaidah struktur bahasa yang benar:`,
+        subBox: kaidahSubtopik,
+        isArabic: true
+      },
+      {
+        elemen: 'Menulis - Mempresentasikannya (Kitabah & Ardh)',
+        cpText: `Mengomunikasikan ide dan gagasan baik secara tertulis maupun lisan melalui paragraf sederhana pada jenis teks deskriptif dan terstruktur tentang tema ${cleanTopic} dalam mata pelajaran ${matpel} dengan susunan kaidah:`,
+        subBox: kaidahSubtopik,
+        isArabic: true
+      }
+    ];
+  } else {
+    return [
+      {
+        elemen: `Pemahaman Konsep (${matpel})`,
+        cpText: `Peserta didik mampu memahami konsep utama, istilah penting, prinsip dasar, dan fenomena yang berkaitan dengan ${cleanTopic} dalam mata pelajaran ${matpel} berbasis Kurikulum Berbasis Cinta (KBC):`,
+        subBox: kaidahSubtopik,
+        isArabic: false
+      },
+      {
+        elemen: 'Keterampilan Proses & Penalaran Kritis',
+        cpText: `Peserta didik mampu mengamati, menganalisis, mengidentifikasi masalah, dan mendemonstrasikan aplikasi praktis dari materi ${cleanTopic} dalam pemecahan masalah kehidupan sehari-hari:`,
+        subBox: kaidahSubtopik,
+        isArabic: false
+      },
+      {
+        elemen: 'Komunikasi & Karya Mandiri',
+        cpText: `Peserta didik mampu mengomunikasikan ide, mempresentasikan hasil kerja kelompok, serta menyusun laporan/karya sederhana tentang ${cleanTopic} secara santun, mandiri, dan berkarakter KBC:`,
+        subBox: kaidahSubtopik,
+        isArabic: false
+      }
+    ];
+  }
+};
+
 export const triggerPrintDocument = () => {
   const originalTitle = document.title;
   document.title = '';
@@ -201,38 +265,28 @@ export const exportToWordDoc = (docData) => {
       <!-- A. CAPAIAN PEMBELAJARAN (CP) -->
       <div class="section-header">A. CAPAIAN PEMBELAJARAN (CP)</div>
       <p style="font-size: 10.5pt; margin-bottom: 10px;">
-        ${docData.cp || 'Pada akhir fase D, peserta didik mempunyai kemampuan memahami informasi tersirat dan tersurat dari berbagai jenis teks lisan dan teks visual atau multimodal, membangun interaksi, dan mengomunikasikan ide yang terstruktur baik secara tertulis maupun lisan.'}
+        ${docData.cp || `Pada akhir ${docData.fase || 'Fase D'}, peserta didik mempunyai kemampuan memahami informasi tersirat dan tersurat dari berbagai jenis teks lisan dan teks visual atau multimodal tentang ${docData.bab || docData.title} dalam mata pelajaran ${docData.matpel || 'Bahasa Arab'} berbasis Kurikulum Berbasis Cinta (KBC).`}
       </p>
 
       <table class="data-table">
         <thead>
           <tr>
             <th width="30%">Elemen</th>
-            <th width="70%">Capaian Pembelajaran</th>
+            <th width="70%">Capaian Pembelajaran Per Elemen</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><b>Menyimak - Berbicara</b></td>
-            <td>
-              Memahami informasi yang diterima secara tersirat dan tersurat serta interaksi tentang tema madrasah, rumah, hobi, pekerjaan, kesehatan, hari-hari besar Islam, pariwisata, alam, dan lingkungan dengan susunan gramatikal:
-              <div class="arabic-text">${arabGrammarText}</div>
-            </td>
-          </tr>
-          <tr>
-            <td><b>Membaca - Memirsa</b></td>
-            <td>
-              Memahami informasi secara tersurat dan tersirat berbagai jenis teks visual atau multimodal tentang madrasah, rumah, hobi, pekerjaan, kesehatan, hari-hari besar Islam, pariwisata, alam, dan lingkungan dengan susunan gramatikal:
-              <div class="arabic-text">${arabGrammarText}</div>
-            </td>
-          </tr>
-          <tr>
-            <td><b>Menulis - Mempresentasikannya</b></td>
-            <td>
-              Mengomunikasikan ide baik secara tertulis maupun lisan melalui paragraf sederhana pada berbagai jenis teks dan terstruktur tentang madrasah, rumah, hobi, pekerjaan, kesehatan, hari-hari besar Islam, pariwisata, alam, dan lingkungan dengan susunan gramatikal:
-              <div class="arabic-text">${arabGrammarText}</div>
-            </td>
-          </tr>
+          ${getCPTableData(docData).map(row => `
+            <tr>
+              <td><b>${row.elemen}</b></td>
+              <td>
+                ${row.cpText}
+                <div style="margin-top: 6px; padding: 6px; background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 4px; font-weight: bold; ${row.isArabic ? 'direction: rtl; text-align: right;' : ''}">
+                  ${row.subBox}
+                </div>
+              </td>
+            </tr>
+          `).join('')}
         </tbody>
       </table>
 
