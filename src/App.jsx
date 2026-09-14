@@ -83,6 +83,49 @@ export default function App() {
     }
   }, []);
 
+  // Dynamically update browser tab title (document.title) whenever activeTab or currentDoc changes
+  useEffect(() => {
+    let pageTitle = 'PerangkatAjar Pro - Generator Modul Ajar & RPP AI';
+
+    switch (activeTab) {
+      case 'dashboard':
+        pageTitle = 'Dashboard | PerangkatAjar Pro';
+        break;
+      case 'prota':
+        pageTitle = 'Program Tahunan (PROTA) | PerangkatAjar Pro';
+        break;
+      case 'prosem':
+        pageTitle = 'Program Semester (PROSEM) | PerangkatAjar Pro';
+        break;
+      case 'materi-ajar':
+        pageTitle = 'Materi Ajar | PerangkatAjar Pro';
+        break;
+      case 'wizard':
+        pageTitle = currentDoc?.title 
+          ? `Edit: ${currentDoc.title} | PerangkatAjar Pro`
+          : 'Pembuat Modul Ajar | PerangkatAjar Pro';
+        break;
+      case 'preview':
+        pageTitle = currentDoc?.title 
+          ? `Pratinjau: ${currentDoc.title} | PerangkatAjar Pro`
+          : 'Pratinjau Dokumen | PerangkatAjar Pro';
+        break;
+      case 'bank':
+        pageTitle = 'Bank Perangkat | PerangkatAjar Pro';
+        break;
+      case 'templates':
+        pageTitle = 'Template Ready | PerangkatAjar Pro';
+        break;
+      case 'ai-assistant':
+        pageTitle = 'AI Assistant | PerangkatAjar Pro';
+        break;
+      default:
+        pageTitle = 'PerangkatAjar Pro - Generator Modul Ajar & RPP AI';
+    }
+
+    document.title = pageTitle;
+  }, [activeTab, currentDoc]);
+
   // Save documents to LocalStorage whenever updated
   const saveDocumentsToStorage = (updatedDocs) => {
     setDocuments(updatedDocs);
