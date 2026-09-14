@@ -37,13 +37,14 @@ export default function Navbar({ activeTab, setActiveTab, onNewDocument }) {
             onClick={() => handleSelect('dashboard')} 
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-teal-600 to-emerald-400 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-              <BookOpen className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-teal-700 via-teal-600 to-emerald-500 flex items-center justify-center text-white shadow-md shadow-teal-600/30 group-hover:scale-105 transition-transform relative overflow-hidden">
+              <BookOpen className="w-5 h-5 text-white" />
+              <Sparkles className="w-3 h-3 text-amber-300 fill-amber-300 absolute top-0.5 right-0.5 animate-pulse" />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="font-extrabold text-xl tracking-tight text-slate-800">Perangkat<span className="text-teal-600">Ajar</span></span>
-                <span className="bg-rose-100 text-rose-700 text-[10px] font-extrabold px-1.5 py-0.5 rounded uppercase">KBC & DEEP</span>
+                <span className="bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded-md shadow-xs uppercase tracking-wider">KBC & DEEP</span>
               </div>
               <p className="text-[11px] text-slate-500 font-medium">
                 MTs Darussalam Ngesong
