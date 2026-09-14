@@ -21,6 +21,22 @@ export const BANK_MATERI_PER_MATPEL = {
   'IPA (Ilmu Pengetahuan Alam)': [
     { bab: 'BAB 1 : HAKIKAT ILMU SAINS & PENGUKURAN', topic: 'Metode Ilmiah, Keselamatan Laboratorium, Besaran & Satuan', jp: '10 JP (5 kali pertemuan)' },
     { bab: 'BAB 2 : EKOSISTEM & KEANEKARAGAMAN HAYATI', topic: 'Komponen Biotik/Abiotik, Rantai Makanan, Ekopedagogi', jp: '12 JP (6 kali pertemuan)' }
+  ],
+  'Fisika': [
+    { bab: 'BAB 1 : HAKIKAT FISIKA & BESARAN PENGUKURAN', topic: 'Metode Ilmiah, Vektor, Ketidakpastian Pengukuran', jp: '10 JP (5 kali pertemuan)' },
+    { bab: 'BAB 2 : GERAK & GAYA (MEKANIKA)', topic: 'Gerak Lurus GLB/GLBB, Hukum Newton, Usaha & Energi', jp: '14 JP (7 kali pertemuan)' }
+  ],
+  'Kimia': [
+    { bab: 'BAB 1 : STRUKTUR ATOM & TABEL PERIODIK', topic: 'Partikel Atom, Nomor Atom/Massa, Sifat Periodik Unsur', jp: '12 JP (6 kali pertemuan)' },
+    { bab: 'BAB 2 : IKATAN KIMIA & REAKSI KIMIA', topic: 'Ikatan Ion & Kovalen, Stoikiometri Dasar, Hukum Massa', jp: '12 JP (6 kali pertemuan)' }
+  ],
+  'Biologi': [
+    { bab: 'BAB 1 : SEL SEBAGAI UNIT KEHIDUPAN', topic: 'Struktur & Organel Sel, Transpor Membran, Pembelahan Sel', jp: '12 JP (6 kali pertemuan)' },
+    { bab: 'BAB 2 : KEANEKARAGAMAN HAYATI & EKOSISTEM', topic: 'Tingkat Keanekaragaman, Klasifikasi Makhluk Hidup, Ekologi', jp: '12 JP (6 kali pertemuan)' }
+  ],
+  'BTQ (Baca Tulis Al-Qur\'an)': [
+    { bab: 'BAB 1 : KAIDAH TAJWID & MAKHARIJUL HURUF', topic: 'Hukum Nun Mati/Tanwin, Mim Mati, Makhraj dan Sifat Huruf', jp: '12 JP (6 kali pertemuan)' },
+    { bab: 'BAB 2 : HUKUM BACAAN MAD & WAQAF', topic: 'Mad Thabi\'i & Mad Far\'i, Tanda Waqaf, Penulisan Khat Al-Qur\'an', jp: '12 JP (6 kali pertemuan)' }
   ]
 };
 
@@ -284,9 +300,13 @@ export const JURUSAN_MATPEL_OPTIONS = [
   'Al-Qur\'an Hadis',
   'Fikih',
   'Sejarah Kebudayaan Islam (SKI)',
+  'BTQ (Baca Tulis Al-Qur\'an)',
   'Bahasa Indonesia',
   'Matematika',
   'IPA (Ilmu Pengetahuan Alam)',
+  'Fisika',
+  'Kimia',
+  'Biologi',
   'IPS (Ilmu Pengetahuan Sosial)',
   'Bahasa Inggris',
   'Informatika / TIK',
