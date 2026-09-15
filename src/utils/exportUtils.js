@@ -163,7 +163,7 @@ export const exportToWordDoc = (docData) => {
         .cover-info td { border: none; padding: 4px 0; }
         
         .header-banner { background-color: #064e3b; color: #ffffff; padding: 12px; text-align: center; font-weight: bold; font-size: 11pt; margin-bottom: 20px; border-radius: 6px; }
-        .section-header { background-color: #d1fae5; color: #064e3b; font-weight: bold; font-size: 10.5pt; padding: 6px 10px; margin-top: 18px; margin-bottom: 8px; border-radius: 4px; text-transform: uppercase; }
+        .section-header { background-color: #d1fae5; color: #064e3b; font-weight: bold; font-size: 10.5pt; padding: 6px 10px; margin-top: 18px; margin-bottom: 8px; border-radius: 4px; text-transform: uppercase; page-break-after: avoid; break-after: avoid; }
         .sub-badge { background-color: #047857; color: #ffffff; font-weight: bold; font-size: 9.5pt; padding: 4px 8px; display: inline-block; margin-top: 10px; margin-bottom: 6px; border-radius: 3px; }
         .sub-badge-amber { background-color: #f59e0b; color: #000000; font-weight: bold; font-size: 9pt; padding: 3px 6px; display: inline-block; margin-top: 8px; margin-bottom: 4px; border-radius: 3px; }
         
@@ -273,7 +273,7 @@ export const exportToWordDoc = (docData) => {
       </ul>
 
       <!-- DESAIN PEMBELAJARAN BANNER -->
-      <div style="text-align: center; margin-top: 25px; margin-bottom: 15px;">
+      <div style="text-align: center; margin-top: 25px; margin-bottom: 15px; page-break-after: avoid; break-after: avoid;">
         <div style="background-color: #064e3b; color: #ffffff; padding: 8px 20px; display: inline-block; font-weight: bold; font-size: 11pt; border-radius: 6px;">
           DESAIN PEMBELAJARAN
         </div>

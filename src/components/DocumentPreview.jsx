@@ -220,15 +220,15 @@ export default function DocumentPreview({ docData, onEdit, onBack }) {
         </div>
 
         {/* GREEN BANNER: DESAIN PEMBELAJARAN */}
-        <div className="pt-4 text-center">
+        <div className="pt-4 text-center print:break-after-avoid" style={{ pageBreakAfter: 'avoid', breakAfter: 'avoid' }}>
           <div className="bg-emerald-800 text-white py-2 px-6 rounded-lg inline-block font-black text-sm uppercase tracking-widest shadow-sm">
             DESAIN PEMBELAJARAN
           </div>
         </div>
 
         {/* A. CAPAIAN PEMBELAJARAN (CP) */}
-        <div className="space-y-3">
-          <div className="bg-emerald-100/80 text-emerald-950 font-black text-xs px-3 py-1.5 rounded-md uppercase">
+        <div className="space-y-3 print:break-before-avoid" style={{ pageBreakBefore: 'avoid', breakBefore: 'avoid' }}>
+          <div className="bg-emerald-100/80 text-emerald-950 font-black text-xs px-3 py-1.5 rounded-md uppercase print:break-after-avoid" style={{ pageBreakAfter: 'avoid', breakAfter: 'avoid' }}>
             A. CAPAIAN PEMBELAJARAN (CP)
           </div>
           <p className="text-xs text-slate-800 leading-relaxed pl-1">
