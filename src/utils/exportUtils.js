@@ -107,6 +107,23 @@ export const getCPTableData = (docData) => {
   }
 };
 
+export const getEffectivePertemuanList = (docData) => {
+  if (!docData) return [];
+  let list = (docData.pertemuanList && docData.pertemuanList.length > 0)
+    ? docData.pertemuanList
+    : (generateAIContent(docData.matpel, docData.bab || docData.title, docData.jenjang).pertemuanList || []);
+
+  const alokasi = docData.alokasiWaktu || '';
+  const match = alokasi.match(/(\d+)\s*(?:kali\s*)?pertemuan/i);
+  if (match && match[1]) {
+    const targetCount = parseInt(match[1], 10);
+    if (targetCount > 0 && targetCount <= list.length) {
+      return list.slice(0, targetCount);
+    }
+  }
+  return list;
+};
+
 export const triggerPrintDocument = () => {
   const originalTitle = document.title;
   document.title = '';
@@ -382,10 +399,7 @@ export const exportToWordDoc = (docData) => {
       <!-- H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI (8 PERTEMUAN LENGKAP) -->
       <div class="section-header">H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI</div>
       
-      ${((docData.pertemuanList && docData.pertemuanList.length > 0)
-        ? docData.pertemuanList
-        : (generateAIContent(docData.matpel, docData.bab || docData.title, docData.jenjang).pertemuanList || [])
-      ).map((p, idx) => `
+      ${getEffectivePertemuanList(docData).map((p, idx) => `
         <div style="border: 1px solid #6ee7b7; background-color: #ecfdf5; padding: 12px; border-radius: 6px; margin-top: 10px; margin-bottom: 12px;">
           <div class="sub-badge">PERTEMUAN ${p.no || (idx + 1)} (${p.jp || '2 JP : 80 MENIT'})</div>
           <p style="font-size: 10pt; font-weight: bold; margin: 4px 0; color: #064e3b;">

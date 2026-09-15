@@ -1,6 +1,6 @@
 import React from 'react';
 import { Printer, Download, ArrowLeft, Edit3, Heart } from 'lucide-react';
-import { triggerPrintDocument, exportToWordDoc, formatNamaDanGelar, formatKepalaHeader, getCPTableData } from '../utils/exportUtils';
+import { triggerPrintDocument, exportToWordDoc, formatNamaDanGelar, formatKepalaHeader, getCPTableData, getEffectivePertemuanList } from '../utils/exportUtils';
 import { generateAIContent } from '../utils/aiGenerator';
 
 const cleanMarkdownText = (str) => {
@@ -401,20 +401,17 @@ export default function DocumentPreview({ docData, onEdit, onBack }) {
           </div>
         </div>
 
-        {/* H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI (8 PERTEMUAN LENGKAP) */}
+        {/* H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI */}
         <div className="space-y-4 pt-2 print:break-inside-avoid" style={{ pageBreakInside: 'avoid', breakInside: 'avoid' }}>
           <div className="bg-emerald-100/80 text-emerald-950 font-black text-xs px-3 py-1.5 rounded-md uppercase flex justify-between items-center print:break-after-avoid" style={{ pageBreakAfter: 'avoid', breakAfter: 'avoid' }}>
             <span>H. LANGKAH-LANGKAH PEMBELAJARAN BERDIFERENSIASI</span>
             <span className="bg-emerald-700 text-white px-2 py-0.5 rounded text-[10px]">
-              {((docData.pertemuanList && docData.pertemuanList.length) || 8)} Pertemuan Lengkap
+              {getEffectivePertemuanList(docData).length} Pertemuan Lengkap
             </span>
           </div>
 
           <div className="space-y-6 text-xs">
-            {((docData.pertemuanList && docData.pertemuanList.length > 0) 
-              ? docData.pertemuanList 
-              : (generateAIContent(docData.matpel, docData.bab || docData.title, docData.jenjang).pertemuanList || [])
-            ).map((p, idx) => (
+            {getEffectivePertemuanList(docData).map((p, idx) => (
               <div key={idx} className="border border-emerald-300 rounded-xl p-4 bg-emerald-50/20 space-y-3 print:break-inside-avoid" style={{ pageBreakInside: 'avoid', breakInside: 'avoid' }}>
                 <div className="flex justify-between items-center bg-emerald-700 text-white px-3 py-1.5 rounded font-black text-xs uppercase">
                   <span>PERTEMUAN {p.no || (idx + 1)} ({p.jp || '2 JP : 80 MENIT'})</span>
